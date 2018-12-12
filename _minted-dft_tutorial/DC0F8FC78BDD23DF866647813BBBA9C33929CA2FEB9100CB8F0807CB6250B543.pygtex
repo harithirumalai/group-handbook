@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+cp \PYGdefaultZhy{}r \PYGdefault{n+nb}{test test}\PYGdefaultZhy{}1
+ls \PYGdefault{n+nb}{test}
+ls \PYGdefault{n+nb}{test}\PYGdefaultZhy{}1
+\end{Verbatim}

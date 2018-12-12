@@ -1,0 +1,1690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>DFT tutorial - Grabow's group</title>
+<!-- 2016-10-19 Wed 12:36 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="UH Computational Catalysis and Interface Chemistry Group" />
+<meta  name="description" content="No description available"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">DFT tutorial - Grabow's group</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. Linux, Python and ASE</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Basics of Linux</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. Terminals</a></li>
+<li><a href="#sec-2-1-2">2.1.2. Logging into the cluster/supercumputer</a></li>
+<li><a href="#sec-2-1-3">2.1.3. Basic bash shell commands</a></li>
+<li><a href="#sec-2-1-4">2.1.4. Text editors</a></li>
+<li><a href="#sec-2-1-5">2.1.5. Configuration of .cshrc file</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Python</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. Introduction</a></li>
+<li><a href="#sec-2-2-2">2.2.2. Common used commands and basics</a></li>
+<li><a href="#sec-2-2-3">2.2.3. Loading python modules and functions</a></li>
+<li><a href="#sec-2-2-4">2.2.4. Simple data manipulation example</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. Atomic Simulation Environment (ASE)</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1. Installing ASE</a></li>
+<li><a href="#sec-2-3-2">2.3.2. Reading and Viewing simple atoms files</a></li>
+<li><a href="#sec-2-3-3">2.3.3. Building gas phase molecules</a></li>
+<li><a href="#sec-2-3-4">2.3.4. Building crystal structures</a></li>
+<li><a href="#sec-2-3-5">2.3.5. Building surfaces</a></li>
+<li><a href="#sec-2-3-6">2.3.6. Get details of an atoms object</a></li>
+<li><a href="#sec-2-3-7">2.3.7. Edit a loaded atoms object</a></li>
+<li><a href="#sec-2-3-8">2.3.8. Adding Atoms to Existing Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Computing Concepts</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Queues</a></li>
+<li><a href="#sec-3-2">3.2. Jobscripts</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Setting up and Submitting a VASP Calculation</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Quick Introduction to VASP</a></li>
+<li><a href="#sec-4-2">4.2. Using ASE to Set Up a Calculation</a></li>
+<li><a href="#sec-4-3">4.3. Executing the Calculation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This is supposed to be a tutorial to help new members of the group to start performing DFT calculations, starting from basic commands in a Linux terminal to adsorption calculations using VASP. This is not supposed to be a thorough guide, and the user is encourage to complement the information provided here with other sources.
+</p>
+
+<p>
+We also recommend you to look at John Kitchin's <a href="http://kitchingroup.cheme.cmu.edu/dft-book/dft.pdf">DFT Book (pdf)</a> or <a href="http://kitchingroup.cheme.cmu.edu/dft-book/dft.html">html</a> versions since it contains many working examples that can be easily (or relatively easy) followed. Some of the examples shown here were taken from there and slightly modified to fit the purpose of this tutorial.  
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Linux, Python and ASE</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Basics of Linux</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Whenever you see rectangles like the one below in this tutorial, it will contain code that you can copy and paste it on a Linux terminal or a Python interpreter, depending of what is being explained. Just when using scripts you will be able to copy all lines at the same time and paste them into a file that can be run at once (meaning all lines will be executed in serie), in the other hand, if you are using the terminal or python interpreter you should copy and execute each line at a time. In this case, these lines would not do anything.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"># First line in code 
+# Second line in code
+</pre>
+</div>
+
+<p>
+If you see a second code rectangle right after the first one, this second one would contain what you should expect as answer when running the code shown in the first code rectangle. An example of this can be seen here:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">print (5 + 4) * ( 1./2 )
+</pre>
+</div>
+
+<pre class="example">
+4.5
+</pre>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Terminals</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+In all cases mentioned in this section, terminal is the application that allow the user to communicate directly with the computer via commands. It is also a way to recieve output text from the machine.
+</p>
+
+<p>
+Depending of your operative system you would need to download a software that emulates a terminal (Windows users) or just start the preinstalled terminal in your computer (Mac and Linux users). The following figure shows how a terminal window look like in a Mac computer.
+</p>
+
+
+<div class="figure">
+<p><img src="./figures/terminal-mac.png" alt="terminal-mac.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Terminal window on Mac OSX</p>
+</div>
+
+<p>
+Please look at the next section to see how to start/install a terminal in your computer.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-2-1-1-1" name="sec-2-1-1-1"></a><span class="done DONE">DONE</span> For Linux users<br  /><div class="outline-text-5" id="text-2-1-1-1">
+<p>
+If you are a Linux user then you should be able to start a terminal without the need for any installation. Terminal on a Linux system running Ubuntu can be accessed using Ctrl+Alt+T. Multiple tabs can be opened by typing Ctrl+Shift+T.
+</p>
+
+<div class="figure">
+<p><img src="./figures/Ubuntu-terminal.png" alt="Ubuntu-terminal.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Terminal window on Linux</p>
+</div>
+</div>
+</li>
+
+<li><a id="sec-2-1-1-2" name="sec-2-1-1-2"></a><span class="done DONE">DONE</span> For Windows users<br  /><div class="outline-text-5" id="text-2-1-1-2">
+<p>
+Windows users can install either <a href="http://mobaxterm.mobatek.net/">MobaXTerm</a> or <a href="http://www.straightrunning.com/XmingNotes/">Xming</a>. We recommend MobaXTerm because it is used by some of the group members who are not working on Unix based systems.
+</p>
+
+<div class="figure">
+<p><img src="./figures/moba.png" alt="moba.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 3:</span> MobaXTerm Terminal window on Windows</p>
+</div>
+</div>
+</li>
+
+<li><a id="sec-2-1-1-3" name="sec-2-1-1-3"></a><span class="done DONE">DONE</span> For Mac users<br  /><div class="outline-text-5" id="text-2-1-1-3">
+<p>
+Macbook users can access the terminals by searching for <code>Terminal</code> in Apple's Spotlight Search (command+space).
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Logging into the cluster/supercumputer</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+In order to login into your account in a cluster or supercomputer (STAMPEDE, CORI, etc) you need the address of the remote computer and have an account in it. Then you should be able to connect to the remote computer typing the following command in a terminal
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ssh -X user_name@supercomputer_address
+</pre>
+</div>
+
+<p>
+Addresses of the supercomputers used by the group are:
+</p>
+<pre class="example">
+System: colossus
+Address: colossus.egr.uh.edu
+
+System: opuntia
+Address: opuntia.cacds.uh.edu
+
+System: maxwell 
+Address: cusco.hpcc.uh.edu
+
+System: cori
+Address: cori.nersc.gov
+
+System: stampede
+Address: stampede.tacc.utexas.edu
+
+System: uhpc
+Address: uhpc.hpcc.uh.edu
+
+System: edison
+Address: edison.nersc.gov
+</pre>
+
+<p>
+You cannot use these supercomputers as soon as you log in to them. Your environment has to be set up to load all the programs, modules and executables required for smooth functioning. This is addressed in the final section of this chapter. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Basic bash shell commands</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+The commands will help you navigate through your folders, copy files, remove files and some other basic shell commands will be used in the examples of this section. 
+</p>
+
+<p>
+We will start logging into one of the local clusters (Maxwell, Colossus, Opuntia or uHPC) or any other supercomputer.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ssh -X user_name@supercomputer_address
+</pre>
+</div>
+</div>
+
+<ol class="org-ol"><li><a id="sec-2-1-3-1" name="sec-2-1-3-1"></a><span class="done DONE">DONE</span> <b>mkdir</b>, <b>cd</b><br  /><div class="outline-text-5" id="text-2-1-3-1">
+<p>
+Once in your $HOME directory (HOME is the environmental variable that stores the path to your home directory), lets create a directory named "example" and go inside there. "<b><code>mkdir</code></b>" (<i>create directory</i>) and "<b><code>cd</code></b>" (<i>change directory</i>) are the commands that we need for such task
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir example
+cd example
+</pre>
+</div>
+<p>
+Remember that you need to type each line at a time and press <b>&lt;enter&gt;</b> in order to execute the command. Once you execute both lines you should be in a new empty folder.
+</p>
+
+<p>
+In order to come back to the previous location (come back to the parent directory) you can use 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">cd ..
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-2-1-3-2" name="sec-2-1-3-2"></a><span class="done DONE">DONE</span> <b>echo</b>, <b>ls</b><br  /><div class="outline-text-5" id="text-2-1-3-2">
+<p>
+Lets know talk a little about the command "<b><code>echo</code></b>". This command allow you to print out text and display it in the screen. However, this simple command can also be used to write text in files in a fast way. Lets use this command in its simple form first to show you how this work:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">echo "Hello new member!!!"
+</pre>
+</div>
+
+<pre class="example">
+Hello new member!!!
+</pre>
+
+<p>
+This second rectangle shows what you should observe as output in your screen. Now, go back to your previously created directory (type: <code>cd example</code>) and change the line above a little&#x2026;
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">echo "Hello new member!!!" &gt; hello.txt
+</pre>
+</div>
+
+<p>
+In this case the special character "&gt;" is indicating that the text should be written in a file named "hello.txt" instead of being displayed in the screen. This means that you should now have the new file in your folder. In order to display the content of the current folder (where you currently are), you can use the command "<b><code>ls</code></b>".
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ls
+</pre>
+</div>
+
+<pre class="example">
+hello.txt
+</pre>
+
+<p>
+"hello.txt" is now a text file located in your current position. If you want to display the content of a text file, you can use a command such as "<b><code>more</code></b>" followed by the file (or files) you want to display. If your file has a lot of text, then you can navigate through the text using the spacebar. To quit using the more command, press 'q'
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">more hello.txt
+</pre>
+</div>
+
+<p>
+Now, if you want to append more lines to the same file you should use "&gt;&gt;". In the case you use "&gt;" again you will erase whaterever was written in the corresponding text file.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">echo "This is the second line" &gt;&gt; hello.txt
+</pre>
+</div>
+<p>
+If you do more to the "hello.txt" file, you should now observe two lines as output.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">more hello.txt
+</pre>
+</div>
+
+<pre class="example">
+Hello new member!!!
+This is the second line
+</pre>
+</div>
+</li>
+
+<li><a id="sec-2-1-3-3" name="sec-2-1-3-3"></a><span class="done DONE">DONE</span> <b>rm</b>, <b>cp</b>, <b>mv</b><br  /><div class="outline-text-5" id="text-2-1-3-3">
+<p>
+Remove, copy files, move or renanme files are tasks that are very often used when working with a terminal to explore and manipulate data files. Lets continue with the tutorial with these code lines in order to show you how they work.
+</p>
+
+<p>
+Lets start with renaming the file you just created before "hello.txt". We will use the "<b><code>mv</code></b>" command to show the two main uses of this function. The first use we will show here is as rename command.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mv hello.txt renamed.dat
+ls
+</pre>
+</div>
+
+<p>
+Remember that with "<b><code>ls</code></b>" command we are showing the content of the current folder. You should see now a "rename.dat" file in your current position.
+</p>
+<pre class="example">
+renamed.dat
+</pre>
+
+<p>
+To move a file from one folder to another we will first create a folder called test, and move the file "renamed.dat" into that folder. 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"># This creates a file renamed.dat
+touch renamed.dat
+
+mkdir test
+mv renamed.dat test/
+
+ls test
+</pre>
+</div>
+
+<pre class="example">
+renamed.dat
+</pre>
+
+<p>
+A file or folder may be copied and pasted into another file or folder of the same name, or different name using the <b><code>cp</code></b> command. Let us demonstrate how this can be done by copying the file "renamed.dat", from the folder <b>test</b> and into the current directory.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"># Copies the file renamed.dat from test/ to the current directory (.)
+cp test/renamed.dat .
+ls
+</pre>
+</div>
+
+<pre class="example">
+#dft_tutorial.org#
+Icon
+dft_tutorial (Copia en conflicto de Juan Manuel Arce 2016-09-01).org
+dft_tutorial (Juan Manuel Arce's conflicted copy 2016-09-07).org
+dft_tutorial.html
+dft_tutorial.org
+figures
+py_ex_data.txt
+renamed.dat
+test
+</pre>
+
+<p>
+It is also possible to copy an entire folder by using the <b><code>cp</code></b> command recursively. To use a command recursively, you must pass the argument <code>-r</code> along with the command. The usage of recursive copying is demonstrated below. We will try to copy the entire folder test and create another folder test-1 with the same contents
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">cp -r test test-1
+ls test
+ls test-1
+</pre>
+</div>
+
+<pre class="example">
+renamed.dat
+renamed.dat
+</pre>
+
+<p>
+To remove a file or a folder, one should use the <b><code>rm</code></b> command as 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"># List contents before deletion
+ls test-1
+
+# Remove renamed.dat from test-1
+rm test-1/renamed.dat
+
+echo "Deleted"
+
+# List contents after deletion
+ls test-1
+
+# Remove test-1 folder
+# List contents of current directory
+ls
+
+rm -r test-1
+
+# List contents of current directory after deletion
+ls
+</pre>
+</div>
+
+<pre class="example">
+#dft_tutorial.org#
+Icon
+dft_tutorial (Copia en conflicto de Juan Manuel Arce 2016-09-01).org
+dft_tutorial (Juan Manuel Arce's conflicted copy 2016-09-07).org
+dft_tutorial.html
+dft_tutorial.org
+figures
+py_ex_data.txt
+renamed.dat
+test
+test-1
+
+#dft_tutorial.org#
+Icon
+dft_tutorial (Copia en conflicto de Juan Manuel Arce 2016-09-01).org
+dft_tutorial (Juan Manuel Arce's conflicted copy 2016-09-07).org
+dft_tutorial.html
+dft_tutorial.org
+figures
+py_ex_data.txt
+renamed.dat
+test
+</pre>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> Text editors</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+VI Editor and Emacs are commonly used text editors in the world of computing. They are similar to something familiar like Notepad in windows. Text editors are extremely important because they can open any file the contains normal ASCII text. These files can be anything from configuration files to scripts. They are very lightweight and are extremely versatile.
+Both editors are fairly difficult to work with at first, and possess a steep learning curve. They are useful for different purposes, and it is best to know the basics of both, to ensure a smooth manner of working. Outside of standard tutorials, we strongly encourage you to look up resources on the internet. It has always happened that we learn something new with every new Google search. 
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-2-1-4-1" name="sec-2-1-4-1"></a>VI Editor<br  /><div class="outline-text-5" id="text-2-1-4-1">
+<p>
+vi editor is a very powerful and handy text editor used commonly by members in the group. The best way one can learn this editor is to go through the VIM Tutorial. This can be accessed on any terminal by typing 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">vimtutor
+</pre>
+</div>
+
+<pre class="example">
+=    W e l c o m e   t o   t h e   V I M   T u t o r    -    Version 1.7      =
+===============================================================================
+
+     Vim is a very powerful editor that has many commands, too many to
+     explain in a tutor such as this.  This tutor is designed to describe
+     enough of the commands that you will be able to easily use Vim as
+     an all-purpose editor.
+
+     The approximate time required to complete the tutor is 25-30 minutes,
+     depending upon how much time is spent with experimentation.
+</pre>
+</div>
+</li>
+
+<li><a id="sec-2-1-4-2" name="sec-2-1-4-2"></a>Emacs<br  /><div class="outline-text-5" id="text-2-1-4-2">
+<p>
+Emacs is again a very powerful and versatile text editor, used by some members (Juan Manuel and Hari) in the group. Emacs can be accessed by typing <code>emacs</code> in the terminal. In most systems, the emacs that pops up is one built into the command line, in a manner similar to the VI editor. The version of emacs used by us in the group has a graphical user interface associated with it, as well as many useful packages and functions built in. This emacs is intuitively called jmax, also the work of John Kitchin.
+Emacs can be learned by opening it and accessing its tutorial on the main page.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">emacs
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./figures/emacs.png" alt="emacs.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 4:</span> Emacs GUI</p>
+</div>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-1-5" class="outline-4">
+<h4 id="sec-2-1-5"><span class="section-number-4">2.1.5</span> Configuration of .cshrc file</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+When you log in to a system, you can assume that there are certain default parameters and applications that will be enabled upon login and entering your shell. The most common types of shells used are <b>BASH</b> shells and <b>CSH/TCSH</b> shells. Every shell will have a .(shell)rc file associated with it. In almost all situations, a user must modify the list of programs, defaults and executables in order to suit his or her needs. This information is stored in the <b>.cshrc</b> file in your system, because we have set up all of our systems to work with <b>CSH</b> shells. 
+This file is loaded and executed every time you log in into the machine, and can be modified according to your needs.
+</p>
+
+<p>
+While in your <code>$HOME</code> directory or ~/ you can access this file via <b>vi</b> editor doing:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">vi .cshrc
+</pre>
+</div>
+
+<p>
+Once you type <b>&lt;enter&gt;</b> you will be able to modify and personalize this file. This file is personal and contains some lines that configures your personal account in the cluster/supercomputer, hence, it is important to be careful with the modifications done in it.
+</p>
+
+<p>
+This is how my <b>.cshrc</b> file in uHPC looks like:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">module load vasp
+module load ase
+module load povray
+
+setenv PATH ~/bin:/home/jarceram/apps:/home/jarceram/bin/vtstscripts:/home/jarceram/bin/web_scripts:/home/jarceram/apps/VASP-master:${PATH}
+
+####### ASE DATABASE #######
+setenv DB ~/Dropbox/Post-Doc/workbooks_jmax/databases/
+
+if ! $?PYTHONPATH then
+    setenv PYTHONPATH
+endif
+
+setenv PYTHONPATH /share/apps/ase-3.10.0/lib/python2.6/site-packages:/share/apps/python2.6-extra/lib/python2.6/site-packages:${PYTHONPATH}
+
+setenv VASPDIR '/share/apps/vasp/5.4.1/bin'
+setenv VASP_COMMAND '/share/apps/openmpi-1.10.2-intel/bin/mpirun ${VASPDIR}/${VASP_EXEC}'
+setenv VASP_PP_PATH /share/apps/vasp/vasp-potentials
+
+###### CALYPSO ANALYSIS TOOL KIT ##########
+setenv PYTHONPATH /home/jarceram/apps/CALYPSO/CALYPSO_ANALYSIS_KIT-2/lib64/python:${PYTHONPATH}
+setenv PATH /home/jarceram/apps/CALYPSO/CALYPSO_ANALYSIS_KIT-2:${PATH}
+##########################################
+
+# To create aliases, please go to the .cshrc.ext file
+source ~/.cshrc.ext
+</pre>
+</div>
+
+<p>
+To begin with, you just have to make sure that the enviromental variables that links VASP executables with ASE are correct. Those variables are <b>VASPDIR</b>, <b>VASP_COMMAND</b> and <b>VASP_PP_PATH</b>.
+</p>
+
+<p>
+Also, depending on the cluster or supercomputer you are working on, you should be able to set helpful environmental variables by loading modules that were defined by the administrators. I am doing this in my own account with the first three lines in my <b>.cshrc</b>.
+</p>
+
+<p>
+If you have doubts about what your <b>.cshrc</b>  file should contain, ask somebody in the lab, he/she will be happy to help you.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Python</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Introduction</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Python is a programming language which is used and documented extensively in scientific programming. We use python to interface with the Atomic Simulation Environment (ASE), which is used to build, setup and modify molecular models.
+One of the best resources for learning scientific python is through <a href="http://www.scipy-lectures.org/">SciPy</a>, which has extensive notes and examples on using python. <a href="http://kitchingroup.cheme.cmu.edu/pycse/pycse.html">PYCSE</a> is a module written by <a href="http://kitchingroup.cheme.cmu.edu/">John Kitchin</a> and has many examples which use standard Python Modules, as well as custom modules in PYCSE. We recommend that you practise these examples as much as possible, to get a good understanding of python and how to use it to suit your needs. 
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Common used commands and basics</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Even though it is impossible to be thorough in explaining in detail all commands and functions, we will show some of the most common commands and functions that you will more likely see in python scripts used for some of us in the lab. Again, we encourage you to review the broad documentation in the official webpage of <a href="https://docs.python.org/2/">Python</a>. 
+</p>
+
+<p>
+In order to test the commands and functions you should intialize a python interpreter, with the command "python" in a linux terminal while in a computer with Python installed in it.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-2-2-2-1" name="sec-2-2-2-1"></a><span class="done DONE">DONE</span> Print<br  /><div class="outline-text-5" id="text-2-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-python">print 'Hello, this is a sample sentence!'
+print 'This\tis\ttab\tseparated\ttext'
+</pre>
+</div>
+
+<pre class="example">
+Hello, this is a sample sentence!
+This    is      tab     separated       text
+</pre>
+</div>
+</li>
+
+<li><a id="sec-2-2-2-2" name="sec-2-2-2-2"></a><span class="done DONE">DONE</span> Arrays and Dictionaries<br  /><div class="outline-text-5" id="text-2-2-2-2">
+<div class="org-src-container">
+
+<pre class="src src-python">import numpy as np
+
+# Array with a range of numbers from 0 to 5, with step size of 1.
+# Here, the end point is not included.
+a = np.arange(0, 5, 1)
+print a
+
+# Dictionary with keys and corresponding values showing date format
+b = {'Day': 'DD',
+     'Month': 'MM',
+     'Year': 'YYYY'}
+
+print b
+print b['Month']
+</pre>
+</div>
+
+<pre class="example">
+[0 1 2 3 4]
+{'Year': 'YYYY', 'Day': 'DD', 'Month': 'MM'}
+MM
+</pre>
+</div>
+</li>
+
+<li><a id="sec-2-2-2-3" name="sec-2-2-2-3"></a><span class="done DONE">DONE</span> Variable definition<br  /><div class="outline-text-5" id="text-2-2-2-3">
+<p>
+In this section we will define 4 types of variables: string variables, scalar variables (either integer or float numbers), vector or 1-D array and matrix or 2-D array.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">string = 'sample text'
+scalar = 12
+array_1d = [1,3,6,-4,0.95]
+array_2d = [[1,2],[-3,2.0]]
+
+print string 
+print scalar
+print array_1d
+print array_2d
+</pre>
+</div>
+
+<pre class="example">
+sample text
+12
+[1, 3, 6, -4, 0.95]
+[[1, 2], [-3, 2.0]]
+</pre>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> Loading python modules and functions</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+In order to use not pre-loaded commands or functions in python you need to load them first from their modules. This means that by default Python has loaded a set of modules which contains the commands or functions that you can use right away, however, if you want to use a function that is not pre-loaded then you need to load it from the corresponding module. 
+</p>
+
+<p>
+Probably the most common modules that you are going to use are these:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">module</th>
+<th scope="col" class="left">example functions</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">os</td>
+<td class="left">mkdir, remove, getcwd, chdir</td>
+<td class="left">module to access operative system functionality</td>
+</tr>
+
+<tr>
+<td class="left">ase</td>
+<td class="left">Atoms</td>
+<td class="left">useful to handle atomic objects</td>
+</tr>
+
+<tr>
+<td class="left">ase.io</td>
+<td class="left">read, write</td>
+<td class="left">used to load and write atomic objects</td>
+</tr>
+
+<tr>
+<td class="left">ase.calculators</td>
+<td class="left">Vasp, Abinit</td>
+<td class="left">take atomic objects and calculate energies, forces, etc</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Modules are loaded as follows
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">import os
+from ase import Atoms
+from ase.io import read
+from ase.calculators.vasp import Vasp
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-4" class="outline-4">
+<h4 id="sec-2-2-4"><span class="section-number-4">2.2.4</span> Simple data manipulation example</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+Data extraction and manipulation is an activity that become important, specially when dealing with huge data files or when automatization is required in order to post-process the data in an efficient way.
+</p>
+
+<p>
+Lets consider that you want to determine the value of the lattice parameter of a bulk structure that minimizes the energy of the system. Do not worry to much right now in the details behind this. One approach to determine that is determining the energy of the system while changing the value of the lattice constant and then fitting the data to an equation to obtain the value that minimizes the energy. For now, we will focus in using python to extract data and manipulate them to create a simple plot. We will explain later how to determine these data points with a valid set up.
+</p>
+
+<p>
+Create a text file using <b>vi</b> called py_ex_data.txt and copy all lines. Note that data columns are separated by tabs. 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">3.8	-12.28653631
+3.85	-12.65124072
+3.9	-12.88611724
+3.95	-13.01158939
+4	-13.04446413
+4.05	-12.99864981
+4.1	-12.88660177
+4.15	-12.71939621
+4.2	-12.5064955
+</pre>
+</div>
+
+<p>
+A simple code to read this file and extract the datapoints could look like the following:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">import matplotlib.pyplot as plt
+
+# This is only a comment. 
+# Reading data file.
+data = open('py_ex_data.txt','r')
+lines = data.readlines()
+a = []
+e = []
+# To go through all lines we conveniently use a FOR loop
+for line in lines:
+  values = line.split()
+  a.append(values[0])
+  e.append(values[1])
+
+print a
+print e
+plt.plot(a,e,'s:k')
+plt.show()
+</pre>
+</div>
+
+<pre class="example">
+['3.8', '3.85', '3.9', '3.95', '4', '4.05', '4.1', '4.15', '4.2']
+['-12.28653631', '-12.65124072', '-12.88611724', '-13.01158939', '-13.04446413', '-12.99864981', '-12.88660177', '-12.71939621', '-12.5064955']
+</pre>
+
+<p>
+Look at the four last lines, we want to display whatever were saved in the variables <b>a</b> and <b>e</b>, and we used pyplot to generate a graph with those datapoints. The resulting plot should look like the following:
+</p>
+
+
+<div class="figure">
+<p><img src="./figures/py_ex_data.png" alt="py_ex_data.png" width="400px" />
+</p>
+<p><span class="figure-number">Figure 5:</span> Example plot</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Atomic Simulation Environment (ASE)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+ASE is an Atomic Simulation Environment written in the Python programming language with the aim of setting up, steering, and analyzing atomistic simulations (adapted from <a href="https://wiki.fysik.dtu.dk/ase/about.html">ASE</a>). The ASE has been constructed with a number of “design goals” that make it:
+</p>
+
+<ul class="org-ul">
+<li>Easy to use:
+</li>
+</ul>
+<p>
+Setting up an atomistic total energy calculation or molecular dynamics simulation with ASE is simple and straightforward. ASE can be used via a graphical user interface, Command line tools and the Python language. Python scripts are easy to follow (see What is Python? for a short introduction). It is simple for new users to get access to all of the functionality of ASE.
+</p>
+
+<ul class="org-ul">
+<li>Flexible:
+</li>
+</ul>
+<p>
+Since ASE is based on the Python scripting language it is possible to perform very complicated simulation tasks without any code modifications. For example, a sequence of calculations may be performed with the use of simple “for-loop” constructions. There exist ASE modules for performing many standard simulation tasks.
+</p>
+
+<ul class="org-ul">
+<li>Customizable:
+</li>
+</ul>
+<p>
+The Python code in ASE is structured in modules intended for different purposes. There are ase.calculators for calculating energies, forces and stresses, ase.md and ase.optimize modules for controlling the motion of atoms, constraints objects and filters for performing nudged-elastic-band calculations etc. The modularity of the object-oriented code make it simple to contribute new functionality to ASE.
+</p>
+
+<ul class="org-ul">
+<li>Pythonic:
+</li>
+</ul>
+<p>
+It fits nicely into the rest of the Python world with use of the popular NumPy package for numerical work (see Numeric arrays in Python for a short introduction). The use of the Python language allows ASE to be used both interactively as well as in scripts.
+</p>
+</div>
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> Installing ASE</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+ASE is a bundle of python modules which can be invoked or loaded when atomic simulations are required to be set up or analyzed. The easiest way of installing ase, is to download the latest source tar ball from the website. Once downloaded, the tar ball must be extracted, and installation can be completed by running 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">python setup.py install --user
+</pre>
+</div>
+
+<p>
+Sometimes, it is necessary to add the installation path in your <b><code>.cshrc</code></b> file and add ~/.local/bin to the front of your PATH environment variable. This is dependent on the system you are using. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> Reading and Viewing simple atoms files</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+We have downloaded a standard <code>cif</code> file (Crystallographic Information Format) from the International Zeolite Website <a href="http://www.iza-online.org/">IZA</a> as an example structure. The <code>cif</code> file is present as MFI.cif in this folder. 
+The ASE module <code>ase.io</code> has the functions read and write which are capable of handling various formats for atomic structure, and can be used to set up every forseeable future <code>Vasp</code> calculation. An example of how to read a <code>cif</code> file is shown in the code block below.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"># Import the read and write functions from the ase.io module.
+from ase.io import read, write
+
+# Import the visualize function to view the imported atoms object.
+from ase.visualize import view
+
+# Load the cif file into a pythonic object called 'atoms'.
+atoms = read('MFI.cif')
+
+# View the 'atoms' object.
+view(atoms)
+</pre>
+</div>
+
+<p>
+Note: This jmax interface becomes inactive when you call the view function. To make it active again, close the view pop-up and then hit Ctrl+g.
+</p>
+
+<p>
+<code>Vasp</code> calculations require a certain set of input files for calculation initialization. One of these files pertains to the initial structure and cartesian coordinates of the model under investigation. The name of this file is <code>POSCAR</code>. One can simply read a <code>cif</code> and write out a <code>POSCAR</code> using the functions provided by the ase.io module. An example of writing files of various formats is shown below
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.io import read, write
+
+atoms = read('MFI.cif')
+
+# Write the cartesian coordinates file in the =vasp= POSCAR format.
+# File written in the folder 'images'
+write('images/POSCAR_ZSM-5', atoms, format='vasp')
+
+# Write the cartesian coordinates file in the =xyz= format
+write('images/atoms_xyz', atoms, format='xyz')
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> Building gas phase molecules</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Smaller models involving gas phase molecules and systems on simple surfaces are usually built up from scratch, using the modules and functions availble in ase. This can either be done through scripting or through the <code>ase-gui</code> interface. Extensive documentation on using the <code>ase-gui</code> can be accessed on the ASE website at <a href="https://wiki.fysik.dtu.dk/ase/ase/gui/gui.html">Link</a>. Here, we will provide a quick introduction on creating different systems.
+</p>
+
+<p>
+The most simple demonstration to begin with, would be to model a simple gas phase molecule such as H<sub>2</sub>O. ASE provides a number of ways to build and modify models, and we will explore two ways. 1) using python scripting and 2) using the ASE Graphical user interface. We recommend that you use scripting wherever possible as this keeps track of all changes made to the model, whenever documentation is necessary. 
+</p>
+
+<p>
+Gas phase models are the simplest models to make, and are the least expesive in terms of computational processing time. Such systems require that they are enclosed in a vacuum cell of certain dimensions, depending on the size of the model itself. The presence and size of this cell ensures that when DFT calculations are performed, and periodic boundary conditions are implemented in X, Y and Z directions, there is minimal interaction energy between the models. Hence, one should perform calculations to ensure that energies and cell sizes are well converged, before proceeding to use data from these calculations.
+We will build a simple H2O molecule in a box of 10 x 10 x 10 &Aring;. 
+</p>
+
+<p>
+Note: ase.structure may have been updated to a newer version, depending on your version of ase.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.structure import molecule
+from ase.visualize import view
+
+atoms = molecule('H2O')
+atoms.set_cell([10, 10, 10])
+atoms.center()
+
+view(atoms)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./figures/molec_h2o_ase_ex.png" alt="molec_h2o_ase_ex.png" width="400px" />
+</p>
+<p><span class="figure-number">Figure 6:</span> H<sub>2</sub>O molecule in a box</p>
+</div>
+
+<p>
+As you can see we have used the "molecule" and "view" functions from the "structure" and "visualize" subpackages in order to build and visualize the molecule. Again, you need to load modules and subpackages in order to use installed/non-default python packages.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"># From the Atoms and Atom modules
+from ase import Atom, Atoms
+from ase.visualize import view
+from ase.io import read, write
+
+# Creating a random model with H, O and C at random positions
+atoms = Atoms([Atom('H', [0, 0, 0]),
+               Atom('O', [1, 1, 1]), 
+               Atom('C', [2, 2, 1])])
+
+# Set a cell of dimensions 10 \AA
+atoms.set_cell([10, 10, 10])
+write('images/not-centered.png', atoms, show_unit_cell=True)
+# The atoms and the cell originate at [0, 0, 0], and the model will not be centered within the cell
+# it is important to center the model so that there is equal vacuum on all sides.
+atoms.center()
+
+write('images/centered.png', atoms, show_unit_cell=True)
+write('images/POSCAR_random', atoms, format='vasp')
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4"><span class="section-number-4">2.3.4</span> Building crystal structures</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+Crystals are materials that maintain an order in a microscopic scale and in all three dimensions. In other words, the building block (unit cell) of a crystalline material is repeated in the 3-dimensional space, or it is isotropic. Take for instance the example shown in the following figure in which we are displaying the structure of the rutile crystal phase of TiO<sub>2</sub> (rut-TiO<sub>2</sub>). In this figure, the dashed-line box represent the limits of the unit cell that is repeated in all directions.
+</p>
+
+
+<div class="figure">
+<p><img src="./figures/rut-TiO2_ex.png" alt="rut-TiO2_ex.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 7:</span> Crystal structure of rutile-TiO<sub>2</sub></p>
+</div>
+
+<p>
+One way to build a crystal structure through ASE is the "spacegroup" subpackage. This subpackage requires that you to provide the crystal space group, the lattice parameters and the scaled positions of the unique atoms (the number of atoms provided not necessarily match with the number of atoms in the unit cell). Lets continue with the example of rut-TiO<sub>2</sub> and try to build the same crystal structure. We will need detailed information about this crystal that can be found in scientific articles or databases. An example of python script to carry out the task can look like the following:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.lattice.spacegroup import crystal
+from ase.visualize import view
+
+# Lattice parameters. Experimetnal values for TiO2 rutile
+a = 4.5937
+c = 2.9587
+
+# Using the 'crystal' function from 'spacegroup' subpackage
+# Data provided (in order of appearence)
+# Unique atoms in unit cell; scaled positions of unique atoms;
+# Space group ID #; dimension of unit cell (lattice param. and angles)
+rut = crystal(['Ti','O'], basis=[(0.0,0.0,0.0),(0.3048,0.3048,0.0)],
+   spacegroup=136, cellpar=[a, a, c, 90, 90, 90])
+
+view(rut)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./figures/rut-TiO2_ase_ex.png" alt="rut-TiO2_ase_ex.png" width="300px" />
+</p>
+<p><span class="figure-number">Figure 8:</span> Output after running the previous python script that builds rut-TiO<sub>2</sub></p>
+</div>
+
+<p>
+As you can see from what was displayed through ASE graphical user interface, the unit cell of rut-TiO<sub>2</sub> contains two Ti and four O atoms, however, we only specified two positions in the script. This is why we need to provide the space group, in order to let know ASE where the other equivalent atoms should be placed according to symmetric positions that are dependent of the space group.
+</p>
+
+<p>
+Even though you can provide of very reliable experimental information, the atomic positions and cell size and shape usually need to be computationally optimized before can be used to generate a surface or for energy comparisons. We will talk later about a method that can be used to optimize a crystal structure.  
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-5" class="outline-4">
+<h4 id="sec-2-3-5"><span class="section-number-4">2.3.5</span> Building surfaces</h4>
+<div class="outline-text-4" id="text-2-3-5">
+<p>
+If you want to simulate the adsorption of a chemical compounds and its interaction with a solid catalyst, you might want to create a representative model of the solid in question. Here, we explain how to create a surface model that could be used for following calculations, such adsorption tests. 
+</p>
+
+<p>
+We will build a slab of the (101) exposed facet of tetragonal zirconium oxide from its crystal structure parameters. First, you will need the lattice parameters required to build a bulk crystal (as was done for rut-TiO2 above). The lattice parameters are shown in the piece of code below, together with an extra line with the function "surface" that can be used to build a surface from a bulk crystal model. In this case, the function needs a atoms object ("atoms", here in the code), the plane at which the cut should be done, the number of layers that should be included and the length of the vacuum layer in each side of slab (in angstroms). 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.lattice.spacegroup import crystal
+from ase.visualize import view
+from ase.lattice.surface import surface
+
+a = 3.63
+c = 5.25
+z = 0.05
+
+atoms = crystal(['Zr', 'O'], basis=[(0.0, 0.0, 0.0), (0.0, 0.5, z+0.25)],
+   spacegroup=137, cellpar=[a, a, c, 90, 90, 90])
+
+surface = surface(atoms, (1,0,1), 5, 7.5)
+view(surface)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./figures/ZrO2_surf_ex.png" alt="ZrO2_surf_ex.png" width="200px" />
+</p>
+<p><span class="figure-number">Figure 9:</span> Slab of t-ZrO2 (101) built from bulk.</p>
+</div>
+
+<p>
+Even though this procedure is very simple, one needs to be really careful in the selection of the surface termination. For instance, by looking at the slab generated by ASE one can see that the exposed surface in +z direction has a oxygen termination, that might not be (and is not) the most stable termination. However, by deleting this "extra" oxygen atoms on top, we are also changing the Zr/O ratio. The surface slab is now no longer stoichiometric (Zr<sub>10</sub>O<sub>18</sub> instead of Zr<sub>10</sub>O<sub>20</sub>). Is usually a good idea to keep the stoichiometry in order to avoid strong polarization (##is this right??). This is usually not a problem for simple metal surfaces that are highly symetrical or are built by only one distinguishable metal.
+</p>
+
+<p>
+One way to solve this problem can be creating a slab with an extra layer and then deleting the atoms that are not longer needed in order to maintain the desirable number of layers. At the end, is possible that we need to shift the position of all atoms in the cell in order to keep the center of mass in the center of the cell. We are going to use a similar script to create a slab with an extra layer and then delete some of the atoms, so we keep only 5 layers in total.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.lattice.spacegroup import crystal
+from ase.visualize import view
+from ase.lattice.surface import surface
+
+a = 3.63
+c = 5.25
+z = 0.05
+
+atoms = crystal(['Zr', 'O'], basis=[(0.0, 0.0, 0.0), (0.0, 0.5, z+0.25)],
+   spacegroup=137, cellpar=[a, a, c, 90, 90, 90])
+
+surface = surface(atoms, (1,0,1), 6, 7.5)
+
+# Lets remove the atoms that should lead to a 5-layered non-oxygen terminated stoichiometric surface
+ind2remove = [0,1,2,5,33,34]
+for i in sorted(ind2remove, reverse=True):
+   del surface[i]
+
+# Tranlate atoms to the new center
+cell = surface.get_cell()
+com = surface.get_center_of_mass()
+surface.translate([0,0,0.5*cell[2,2] - com[2]])
+
+view(surface)
+</pre>
+</div>
+
+<p>
+As a result, you should get a new slab with the right termination but also one that keeps the Zr/O ratio to 1/2. As you can see in the script we have removed some of the atoms (indicating their indixes in the atomic object) and we shift the position of the whole slab in the z-direction so the center of mass of the slab resides again in the center of the cell.
+</p>
+
+<p>
+We now can use this slab for following calculations.  
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-6" class="outline-4">
+<h4 id="sec-2-3-6"><span class="section-number-4">2.3.6</span> Get details of an atoms object</h4>
+<div class="outline-text-4" id="text-2-3-6">
+<p>
+ASE has many useful functions, which when used efficiently are very powerful in automating scripts and workflow. Given that we have already learned to build complex models and structures, we must also know how to extract details from atoms objects, in the case of analysis and post-processing. Examples of simple ase functions for this purpose are shown below.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.io import read
+
+# Read atoms from previously stored POSCAR
+atoms = read('images/POSCAR_ZSM-5')
+
+# Get unit cell parameters
+cell = atoms.get_cell()
+print 'Unit cell array:' 
+print cell, '\n'
+
+# Get details of all individual atoms making up the entire atoms object
+# Printing only first 10 atom details, using python list indexing
+print('Details of 10 individual atoms: ')
+for atom in atoms[0:10]:
+    print atom
+
+# Get positions of atoms, and print specific details
+positions = atoms.get_positions()
+
+# Using python string formatting and enumeration concepts
+print('\nAtom specific details: ')
+for i, atom in enumerate(atoms[0:10]):
+    print('Index: {0}, Element: {1}, Coordinates: {2}'.format(i, atom.symbol, positions[i]))
+</pre>
+</div>
+
+<pre class="example">
+Unit cell array:
+[[  2.00900000e+01   0.00000000e+00   0.00000000e+00]
+ [  1.20000000e-15   1.97380000e+01   0.00000000e+00]
+ [  8.00000000e-16   8.00000000e-16   1.31420000e+01]] 
+
+Details of 10 individual atoms: 
+Atom('O', [10.069108, 1.3796862000000008, 9.2230555999999986], index=0)
+Atom('O', [20.065892000000002, 11.2486862, 2.6520555999999997], index=1)
+Atom('O', [10.069108, 8.4893137999999997, 9.2230555999999986], index=2)
+Atom('O', [20.065892000000002, 18.358313800000001, 2.6520555999999997], index=3)
+Atom('O', [10.020892000000002, 18.358313800000001, 3.9189444], index=4)
+Atom('O', [0.024107999999998499, 8.4893137999999997, 10.489944400000001], index=5)
+Atom('O', [10.020892, 11.2486862, 3.9189444], index=6)
+Atom('O', [0.0241079999999981, 1.3796862000000008, 10.489944400000001], index=7)
+Atom('O', [7.7848750000000013, 1.4665334000000008, 10.5241136], index=8)
+Atom('O', [2.2601250000000013, 11.335533400000001, 3.9531135999999991], index=9)
+
+Atom specific details: 
+Index: 0, Element: O, Position: [ 10.069108    1.3796862   9.2230556]
+Index: 1, Element: O, Position: [ 20.065892   11.2486862   2.6520556]
+Index: 2, Element: O, Position: [ 10.069108    8.4893138   9.2230556]
+Index: 3, Element: O, Position: [ 20.065892   18.3583138   2.6520556]
+Index: 4, Element: O, Position: [ 10.020892   18.3583138   3.9189444]
+Index: 5, Element: O, Position: [  0.024108    8.4893138  10.4899444]
+Index: 6, Element: O, Position: [ 10.020892   11.2486862   3.9189444]
+Index: 7, Element: O, Position: [  0.024108    1.3796862  10.4899444]
+Index: 8, Element: O, Position: [  7.784875    1.4665334  10.5241136]
+Index: 9, Element: O, Position: [  2.260125   11.3355334   3.9531136]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-7" class="outline-4">
+<h4 id="sec-2-3-7"><span class="section-number-4">2.3.7</span> Edit a loaded atoms object</h4>
+<div class="outline-text-4" id="text-2-3-7">
+<p>
+Pre-loaded atoms objects can be edited to suit the requirements of the model, and other constraints. The process of editing is simple. First, the relevant model (POSCAR or cif) is loaded. Specific details like position can be obtained using relevant functions. Modifications to these details are then made, and finally, the modifications are implemented in the atoms object using relevant functions. An example follows.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.io import read
+
+atoms = read('images/POSCAR_ZSM-5')
+
+# Store required atom into a new variable.
+# Note: This is usually done in less explicit ways
+atom = atoms[4]
+positions = atoms.get_positions()
+
+# Printing coordinates before implementing changes
+print 'Coordinates of atom number 4: ', atom.position
+print 'Element of atom number 4: ', atom.symbol
+
+# We want to change the element and cartesian coordinates of the atom with index=4.
+positions[4] = [1, 1, 1]
+atoms[4].symbol = 'C'
+
+# Reassign modified positions to original atoms object
+atoms.set_positions(positions)
+
+print '\nDetails after implementing changes: '
+atom = atoms[4]
+print 'Coordinates of atom number 4: ', atom.position
+print 'Element of atom number 4: ', atom.symbol
+</pre>
+</div>
+
+<pre class="example">
+Coordinates of atom number 4:  [ 10.020892   18.3583138   3.9189444]
+Element of atom number 4:  O
+
+Details after implementing changes: 
+Coordinates of atom number 4:  [ 1.  1.  1.]
+Element of atom number 4:  C
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-8" class="outline-4">
+<h4 id="sec-2-3-8"><span class="section-number-4">2.3.8</span> Adding Atoms to Existing Model</h4>
+<div class="outline-text-4" id="text-2-3-8">
+<p>
+The atoms object is essentially a python list of individual atoms objects. Hence, one can perform the same operations on atoms objects as simple lists. New atoms can be added to an existing atoms object using the append function in python. However, if you want to add an entire atoms object to a pre-existing atoms object, then one must use the python extend function. Please read up the differences between append() and extend() for better clarity
+In the example shown below, both atoms objects end up identical.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">from ase.io import read
+from ase import Atom, Atoms
+
+# Read in two pre-existing atoms objects
+atoms = read('images/POSCAR_ZSM-5')
+atoms_new = read('images/POSCAR_random')
+
+# Generate a copy of the original atoms object
+atoms1 = atoms.copy()
+
+# To add atoms_new to atoms, we use the extend() function
+atoms1.extend(atoms_new)
+print atoms1
+
+# Define explicit atom objects
+H = Atom('H', [0, 0, 0])
+O = Atom('O', [1, 1, 1]) 
+C = Atom('C', [2, 2, 1])
+
+# Generate a copy of the original atoms object
+atoms2 = atoms.copy()
+
+# Use the append() function to individually append the atom objects to the atoms object
+atoms2.append(H)
+atoms2.append(O)
+atoms2.append(C)
+
+print atoms2
+</pre>
+</div>
+
+<pre class="example">
+Atoms(symbols='CHO193Si96', positions=..., cell=[[20.09, 0.0, 0.0], [1.2e-15, 19.738, 0.0], [7.9999999999999998e-16, 7.9999999999999998e-16, 13.141999999999999]], pbc=[True, True, True])
+Atoms(symbols='CHO193Si96', positions=..., cell=[[20.09, 0.0, 0.0], [1.2e-15, 19.738, 0.0], [7.9999999999999998e-16, 7.9999999999999998e-16, 13.141999999999999]], pbc=[True, True, True])
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Computing Concepts</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Queues</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Once you have created a model, all that is left is for you to submit your calculation to the queue. The queue is a utility that accepts job submissions from users, implements a fair use policy, and allocates resources based on job requirements and other parameters. Most of the systems used by our group are managed by the <a href="http://slurm.schedmd.com/"><code>SLURM Workload Manager</code></a>. Maxwell is managed by the <a href="http://www.adaptivecomputing.com/products/open-source/torque/"><code>Torque Resource Manager</code></a>. Naturally, the configuration keywords and parameters are different for both systems, and every job submission script must contain these parameters for it to be accepted by the queue
+</p>
+
+<p>
+For <code>SLURM</code>
+</p>
+<pre class="example">
+#SBATCH -p (queue partition)
+#SBATCH -o myMPI.o%j
+#SBATCH -N (number of nodes) -n (number of processors per node)
+#SBATCH -t (walltime in hours)
+#SBATCH --mail-type=END
+#SBATCH --mail-user=(user email id)
+</pre>
+
+<p>
+For <code>Torque</code>
+</p>
+<pre class="example">
+#PBS -e myMPI.e%j
+#PBS -o myMPI.o%j
+#PBS -m ae
+#PBS -M (user email id)	
+#PBS -l (walltime in hours)
+#PBS -r n
+#PBS -l nodes=(number of nodes):ppn=(number of processors per node)
+#PBS -l pmem=2500mb (Memory requested per node)
+#PBS -S /bin/tcsh (Specify type of Shell)
+</pre>
+
+<p>
+A more detailed explanation of these parameters follows:
+</p>
+<ul class="org-ul">
+<li>queue partition: This specifies the partition to which you want to submit your job. These are different across different systems.
+</li>
+<li>number of nodes: A node is a group of processors, which are designed to work together with maximum efficiency. A simple example of a node would be a computer with an Intel i5 processor, where the single node has 4 processors. 
+</li>
+<li>number of processors: This is the number of processors present in a node. Usually, every user is expected to request all processors in a node. The configuration of nodes vary from system to system.
+</li>
+<li>walltime in hours: This specifies the time until which the job will execute on the system. Once runtime exceeds this number, the job execution is terminated. 
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Jobscripts</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Jobscripts are executable files of a defined environment, which consist of executable code. Jobscripts can be in a variety of formats. However, the most commonly used ones are python jobscripts, shell and cshell jobscripts.
+A jobscript and a simple file are differentiated by the top line identifier. This line tells the compiler and the interpreter what type of file it is. When a file has this identifier, an extension is generally not required. 
+</p>
+
+<p>
+An example python jobscript is  as follows
+</p>
+<pre class="example">
+#!/usr/bin/env python --&gt; File environment identifier
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j
+#SBATCH -N 5 -n 100                            [SLURM Parameters]
+#SBATCH -t 168:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=hthirumalai@gmail.com
+
+# Your executable python code begins here
+from ase.io import read
+from ase.calculators.vasp import Vasp
+
+...
+</pre>
+
+<pre class="example">
+#!/usr/bin/env python
+
+#PBS -e stderr
+#PBS -o stdout
+#PBS -m ae
+#PBS -M hthirumalai@gmail.com
+#PBS -l walltime=100:00:00
+#PBS -r n
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=2500mb
+#PBS -S /bin/tcsh
+#PBS -V
+
+from ase import *
+from ase.calculators.vasp import Vasp
+</pre>
+
+<p>
+An example shell jobscript is
+</p>
+<pre class="example">
+#!/bin/sh --&gt; File environment identifier
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j
+#SBATCH -N 5 -n 100                            [SLURM Parameters]
+#SBATCH -t 168:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=hthirumalai@gmail.com
+
+# Your executable shell script begins here
+echo 'VASP starting execution ..'
+
+...
+</pre>
+
+<pre class="example">
+#!/bin/sh
+
+#PBS -e stderr
+#PBS -o stdout
+#PBS -m ae
+#PBS -M mayerzmytm@gmail.com
+#PBS -l walltime=100:00:00
+#PBS -r n
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=2500mb
+#PBS -S /bin/tcsh
+#PBS -V
+
+mpirun -np 20 vasp_mpi
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Setting up and Submitting a VASP Calculation</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Quick Introduction to VASP</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Having introduced how to set up a model, and high performance computing concepts, we can now proceed towards setting up and submitting a VASP Calculation.
+</p>
+
+<p>
+The Vienna ab initio Simulation Package or (<a href="https://www.vasp.at/">VASP</a>) is a code that implements Density Functional Theory concepts to perform energy minimization to obtain the ground state atomic configuration of the model under investigation. <code>VASP</code> is installed on all of our supercomputers and can be invoked by loading the relevant modules. Currently installed <code>VASP</code> versions are 5.3.5 and 5.4.1. There is no performance benefit of using one over the other. It is a matter of your choice. Calculation times are dependent on the size of the system, and more specifically, the number of electrons. Calculations for small systems converge to their ground states very quickly. However large systems may sometimes run for many weeks. It is for this reason that <code>VASP</code> is run parallely across many processors or nodes. A system utility named <code>mpirun</code> is responsible for the execution of <code>VASP</code> on massively parallel systems, such as ours.
+</p>
+
+<p>
+A standard <code>VASP</code> calculation, in short, requires 4 files to initiate a calculation
+</p>
+<ul class="org-ul">
+<li>POSCAR - This file contains the cartesian coordinates, type and number of species present in the model.
+</li>
+<li>INCAR - This file consists of the calculation parameters required by <code>VASP</code>.
+</li>
+<li>KPOINTS - This file specifies the type of grid required for calculations.
+</li>
+<li>POTCAR - This file contains the reference pseudopotentials required for calculations.
+</li>
+</ul>
+
+<p>
+This is just a cursory introduction to the files used by <code>VASP</code>. It is recommended for you to go through and understand the <code>VASP</code> manual and other online resources for a better understanding <a href="https://www.vasp.at/index.php/documentation">Link</a>. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Using ASE to Set Up a Calculation</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Again, ASE has many functions and methods which can be used to set up the entire <code>VASP</code> calculation through python. Let us recall that we already learnt how to set up the model through python by the generation of atoms objects <code>POSCAR</code>. The <code>INCAR</code> is automatically set up by ase when a <b>Vasp calculator object</b> is used. The user can enter values for calculator parameters in this object, and also other specifc triggers to write the <code>KPOINTS</code> and <code>POTCAR</code> files. A simple example follows
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"># Import the vasp calculator object
+from ase.calculators.vasp import Vasp
+
+# Read in the cif file, or a pre-made atoms object
+atoms = read('images/MFI.cif')
+
+# Define the calculator and its parameters
+calc = Vasp(xc='PBE',  # Exchange Correlation Functional
+            encut=400, # Plane Wave Cutoff
+            ibrion=2,  # Energy Minimization Algorithm
+            kpts=(2,2,2), # K-point grid. Writes KPOINTS FILE
+            ediffg=0.02, # Iterative Convergence Criteria
+            nsw=500) # Maximum number of Iterations
+
+# Set the calculator to the atoms object
+atoms.set_calculator(calc)
+</pre>
+</div>
+
+<p>
+The snippet of code shown above creates all the files required by <code>VASP</code>. Creation of files is done in the following manner. First, the calculator stores information about the model, the elements, the stoichiometry and the cartesian coordinates. Based on the calculator parameters written in by the user, and combining them with defaults, it stores the entire list of parameters and creates the <code>INCAR</code> file. Based on the parameters, and the type of atoms, it creates the <code>POTCAR</code> and <code>KPOINTS</code> files. Finally, the user is free to call vasp at his or her convenience. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Executing the Calculation</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+We have created all required files for a calculation. The next course of action is to invoke <code>VASP</code>. This is usually done by setting an <a href="https://en.wikipedia.org/wiki/Environment_variable">Environment Variable</a> called 'VASP_EXEC' in your jobscript. When you submit your jobscript to the queue, it will load the specific <code>VASP</code> specified by you in this environment variable. A simple jobscript, assuming that the cif file is in the same folder, is shown below
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">#!/usr/bin/env python
+
+#PBS -e stderr
+#PBS -o stdout
+#PBS -m ae
+#PBS -M hthirumalai@gmail.com
+#PBS -l walltime=100:00:00
+#PBS -r n
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=2500mb
+#PBS -S /bin/tcsh
+#PBS -V
+
+from ase.io import read
+from ase.calculators.vasp import Vasp
+
+atoms = read('MFI.cif')
+
+calc = Vasp(xc='PBE',
+            encut=540,
+            ibrion=2,
+            sigma=0.1,
+            ediffg=-0.02,
+            nsw=500)
+
+atoms.set_calculator(calc)
+e = atoms.get_potential_energy()
+
+f = open('energy', 'w')
+f.write(str(e))
+f.close()
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2016-09</p>
+<p class="author">Author: UH Computational Catalysis and Interface Chemistry Group</p>
+<p class="date">Created: 2016-10-19 Wed 12:36</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

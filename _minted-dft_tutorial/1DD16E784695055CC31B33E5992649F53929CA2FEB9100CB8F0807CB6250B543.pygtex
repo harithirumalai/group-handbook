@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{n+nb}{echo} \PYGdefault{l+s+s2}{\PYGdefaultZdq{}Hello new member!!!\PYGdefaultZdq{}} \PYGdefaultZgt{} hello.txt
+\end{Verbatim}
