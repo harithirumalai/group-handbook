@@ -1,4 +1,4 @@
-#+TITLE: DFT tutorial - Grabow's group
+#+TITLE: Tutorials - For the Old and the New
 #+AUTHOR:    UH Computational Catalysis and Interface Chemistry Group
 #+DRAWERS: HIDDEN HINT SOLUTION
 #+EMAIL:     jarceram@central.uh.edu
@@ -8,57 +8,248 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 
 ** Introduction
-This is supposed to be a tutorial to help new members of the group to start performing DFT calculations, starting from basic commands in a Linux terminal to adsorption calculations using VASP. This is not supposed to be a thorough guide, and the user is encourage to complement the information provided here with other sources.
+The aim of this document is to help users who are new to the concepts and tools used in the group. By the end of this tutorial, the reader will should have a basic understanding of the various components of typical computational research workflows, starting from basic Linux commands to running calculations using VASP and other softwares. This document was not designed to be a thorough guide and the user is encourage to complement the information provided here with extensive Google searches.
 
-We also recommend you to look at John Kitchin's [[http://kitchingroup.cheme.cmu.edu/dft-book/dft.pdf][DFT Book (pdf)]] or [[http://kitchingroup.cheme.cmu.edu/dft-book/dft.html][html]] versions since it contains many working examples that can be easily (or relatively easy) followed. Some of the examples shown here were taken from there and slightly modified to fit the purpose of this tutorial.  
-** Linux, Python and ASE
-*** Basics of Linux
-Whenever you see rectangles like the one below in this tutorial, it will contain code that you can copy and paste it on a Linux terminal or a Python interpreter, depending of what is being explained. Just when using scripts you will be able to copy all lines at the same time and paste them into a file that can be run at once (meaning all lines will be executed in serie), in the other hand, if you are using the terminal or python interpreter you should copy and execute each line at a time. In this case, these lines would not do anything.
+We also recommend you to look at John Kitchin's [[http://kitchingroup.cheme.cmu.edu/dft-book/dft.pdf][DFT Book (pdf)]] or [[http://kitchingroup.cheme.cmu.edu/dft-book/dft.html][html]] versions since it contains many working examples that touch upon practical concepts of computational catalysis which can be easily (or relatively easy) followed and implemented.
+  
+** High Performance Computing
+A significant portion of the research conducted in the group pertains to computational modeling in which various properties of interest for a system are calculated by means of /ab initio/ density functional theory calculations. We refer the reader to an excellent [[https://www.wiley.com/en-us/Density+Functional+Theory%3A+A+Practical+Introduction-p-9780470373170][book]] that elaborates on the nuts and bolts of DFT by Dr. David Sholl. These calculations are computationally intensive and are exclusively performed on computing clusters or supercomputers. These massively-parallel machines are accessed remotely through the [[https://www.ssh.com/ssh/protocol/][Secure Shell Protocol]], and the user is able to access his or her account on that machine. Once logged in, the user sets up these jobs and submits them to the system's resource manager, or the queue. Once resources become available, the queue executes the job and the user is notified upon completion of the job.
+
+*** Queues
+The queue is a utility that accepts job submissions from users, implements a fair use policy, and allocates resources based on job requirements and other parameters. Most of the systems used by our group are managed by the [[http://slurm.schedmd.com/][=SLURM]] Workload Manager=. Maxwell is managed by the [[http://www.adaptivecomputing.com/products/open-source/torque/][=Torque Resource Manager=]]. The configuration keywords and parameters are different for different systems and every job submission script must contain these parameters for it to be accepted by the queue. The queue keywords are
+
+For =SLURM=
 #+BEGIN_SRC sh
-# First line in code 
-# Second line in code
+#SBATCH -p <queue partition>
+#SBATCH -o myMPI.o%j
+#SBATCH -N <number of nodes> -n <number of processors per node>
+#SBATCH -t <walltime in hhh:mm:ss>
+#SBATCH --mail-type=END
+#SBATCH --mail-user=<user email id>
+#+END_SRC_sh
+
+For =Torque=
+#+BEGIN_SRC sh
+#PBS -e myMPI.e%j
+#PBS -o myMPI.o%j
+#PBS -m ae
+#PBS -M <user email id>	
+#PBS -l <walltime in hhh:mm:ss>
+#PBS -r n
+#PBS -l nodes=<number of nodes>:ppn=<number of processors per node>
+#PBS -l pmem=<Memory requested per node in mb>
+#PBS -S /bin/tcsh <Specify type of Shell>
 #+END_SRC
 
-If you see a second code rectangle right after the first one, this second one would contain what you should expect as answer when running the code shown in the first code rectangle. An example of this can be seen here:
-#+BEGIN_SRC python
-print (5 + 4) * ( 1./2 ) 
-#+END_SRC 
+A more detailed explanation of these parameters follows:
+- queue partition: This specifies the partition to which you want to submit your job.
+- number of nodes: A node is a group of processors, which are designed to work together with maximum efficiency. A simple example of a node would be a computer with an Intel i5 processor, where the single node has 4 processors. 
+- number of processors: This is the number of processors or threads in a node. Usually, the user is expected to request all processors in a node. This parameter is system configuration dependent.
+- walltime in hours: This specifies the time until which the job will execute on the system. Once runtime exceeds this value, the job execution is terminated. 
 
-#+RESULTS:
-: 4.5
+*** Jobscripts
+Jobscripts are executable files of a defined environment which consist of executable code. Jobscripts can be in a variety of file formats and the most commonly used ones are python, shell and cshell jobscripts.
+A jobscript and a simple file are differentiated by the file type identifier. This line tells the compiler, interpreter and any text-editor the type of the file. This removes the need for an extension to the file, which can also serve as an identifier. A properly identified file also enables source code formatting on text-editors.
 
-**** Terminals
-In all cases mentioned in this section, terminal is the application that allow the user to communicate directly with the computer via commands. It is also a way to recieve output text from the machine.
+An example python jobscript is  as follows
+#+BEGIN_SRC sh
+#!/usr/bin/env python --> File environment identifier
 
-Depending of your operative system you would need to download a software that emulates a terminal (Windows users) or just start the preinstalled terminal in your computer (Mac and Linux users). The following figure shows how a terminal window look like in a Mac computer.
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j
+#SBATCH -N 5 -n 100                            [SLURM Parameters]
+#SBATCH -t 168:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=hthirumalai@gmail.com
+
+# Your executable python code begins here
+from ase.io import read
+from ase.calculators.vasp import Vasp
+
+...
+#+END_SRC
+
+#+BEGIN_SRC sh
+#!/usr/bin/env python
+
+#PBS -e stderr
+#PBS -o stdout
+#PBS -m ae
+#PBS -M hthirumalai@gmail.com
+#PBS -l walltime=100:00:00
+#PBS -r n
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=2500mb
+#PBS -S /bin/tcsh
+#PBS -V
+
+from ase import *
+from ase.calculators.vasp import Vasp
+
+...
+#+END_SRC
+
+An example shell jobscript is
+#+BEGIN_SRC sh
+#!/bin/sh --> File environment identifier
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j
+#SBATCH -N 5 -n 100                            [SLURM Parameters]
+#SBATCH -t 168:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=hthirumalai@gmail.com
+
+# Your executable shell script begins here
+echo 'VASP starting execution ..'
+
+...
+#+END_SRC
+
+#+BEGIN_SRC sh
+#!/bin/sh
+
+#PBS -e stderr
+#PBS -o stdout
+#PBS -m ae
+#PBS -M mayerzmytm@gmail.com
+#PBS -l walltime=100:00:00
+#PBS -r n
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=2500mb
+#PBS -S /bin/tcsh
+#PBS -V
+
+# Your executable shell script begins here
+echo 'VASP starting execution ..'
+
+#+END_SRC
+
+*** System Specific Settings
+Our group has access to various clusters at any given time and job scripts must be modified such that they execute without errors when transferred from one cluster to another. This section consists of all cluster relevant information. All storage-intensive jobs must be executed on the group's project directories. These locations are backed-up on a daily basis. $SCRATCH directories on Cori and Stampede2 are short term, high I/O performance storage that are periodically purged. Therefore, the reader is advised to use these directories for running jobs only and transfer these files to permanent storage on the University of Houston clusters.
+
+Opuntia
+#+BEGIN_SRC sh
+project directory: /project/grabow
+
+#SBATCH -p grabow
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 20
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com
+#+END_SRC
+
+uHPC
+#+BEGIN_SRC sh
+project directory: /uhpc/grabow
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 20
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+
+#+END_SRC
+
+Juniper
+#+BEGIN_SRC sh
+project directory: /project/grabow
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 24
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com 
+#+END_SRC
+
+Sabine
+#+BEGIN_SRC sh
+project directory: /brazos/grabow
+
+#SBATCH -p batch
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 24
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+#+END_SRC
+
+Cori
+#+BEGIN_SRC sh
+scratch directory: $SCRATCH
+project directory: /global/project/projectdirs/m2029/
+
+#SBATCH -p regular
+#SBATCH -C knl
+#SBATCH -A m2029
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 64
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+
+AND
+
+#SBATCH -p regular
+#SBATCH -C haswell
+#SBATCH -A m2029
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 32
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+
+#+END_SRC
+
+Stampede2
+#+BEGIN_SRC sh
+scratch directory: $SCRATCH
+project directory: $WORK
+
+#SBATCH -p normal
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 64
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+
+AND
+
+#SBATCH -p skx-normal
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 48
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+#+END_SRC
+
+*** Terminals
+The terminal is the window that allows the user to interact with the computer through the command line. Any output from code can also be piped out to the command line on the terminal.
+
+A Windows user needs to download software that provides a terminal for remote ssh access and Linux and Mac OS users can use the pre-installed terminal on their computer. The figure that follows shows a typical terminal window on a Mac OS computer. Users can access the terminals by searching for =Terminal= in Apple's Spotlight Search (command+space).
 
 #+attr_org: :width 200
 #+attr_html: :width 600px
-#+caption: Terminal window on Mac OSX
+#+caption: Terminal window on Mac OS
 [[./figures/terminal-mac.png]]
 
-Please look at the next section to see how to start/install a terminal in your computer.
-***** DONE For Linux users
-      CLOSED: [2016-09-10 Sat 18:15]
-If you are a Linux user then you should be able to start a terminal without the need for any installation. Terminal on a Linux system running Ubuntu can be accessed using Ctrl+Alt+T. Multiple tabs can be opened by typing Ctrl+Shift+T.
+If you are a Linux user then you should be able to start a terminal without the need for any installation. Terminal on a Linux system running Ubuntu can be accessed using Ctrl+Alt+T. Multiple tabs can be opened by hitting Ctrl+Shift+T.
 #+attr_org: :width 200
 #+attr_html: :width 600px
 #+caption: Terminal window on Linux
 [[./figures/Ubuntu-terminal.png]]
 
-***** DONE For Windows users
-      CLOSED: [2016-09-10 Sat 18:15]
-Windows users can install either [[http://mobaxterm.mobatek.net/][MobaXTerm]] or [[http://www.straightrunning.com/XmingNotes/][Xming]]. We recommend MobaXTerm because it is used by some of the group members who are not working on Unix based systems.
+Windows users can install either [[http://mobaxterm.mobatek.net/][MobaXTerm]] or [[http://www.straightrunning.com/XmingNotes/][Xming]]. We recommend MobaXTerm.
 #+attr_org: :width 200
 #+attr_html: :width 600px
 #+caption: MobaXTerm Terminal window on Windows
 [[./figures/moba.png]]
  
-***** DONE For Mac users
-      CLOSED: [2016-09-10 Sat 18:15]
-Macbook users can access the terminals by searching for =Terminal= in Apple's Spotlight Search (command+space).
-**** Logging into the cluster/supercumputer
-In order to login into your account in a cluster or supercomputer (STAMPEDE, CORI, etc) you need the address of the remote computer and have an account in it. Then you should be able to connect to the remote computer typing the following command in a terminal
+*** Logging into the cluster/supercomputer
+In order to login into your account in a cluster or supercomputer you need the address of the remote machine and have an account in it. One should be able to connect to the remote computer typing the following command in a terminal
 #+BEGIN_SRC sh
 ssh -X user_name@supercomputer_address
 #+END_SRC
@@ -77,17 +268,77 @@ Address: cusco.hpcc.uh.edu
 System: cori
 Address: cori.nersc.gov
 
-System: stampede
-Address: stampede.tacc.utexas.edu
+System: stampede2
+Address: stampede2.tacc.utexas.edu
 
 System: uhpc
 Address: uhpc.hpcc.uh.edu
 
-System: edison
-Address: edison.nersc.gov
+System: juniper
+Address: juniper.hpcc.uh.edu
+
+System: sabine
+Address: sabine.cacds.uh.edu
+
 #+END_EXAMPLE
 
-You cannot use these supercomputers as soon as you log in to them. Your environment has to be set up to load all the programs, modules and executables required for smooth functioning. This is addressed in the final section of this chapter. 
+The environment has to be set up the first time the user logs in to load all the programs, modules and executables required for smooth functioning. This is addressed in the final section of this chapter. 
+
+*** Configuration of .cshrc file
+Upon logging in to a system, there are certain default parameters and applications that will be enabled upon login and entering you terminal. The most common types of shells used are *BASH* shells and *CSH/TCSH* shells. Every shell will have a .(shell)rc file associated with it. In almost all situations, a user must modify the list of programs, defaults and executables in order to suit his or her needs. This information is stored in the *.(shell)rc* file in your system. For the clusters on campus, the defaults are setup with *CSH* shells. This file is loaded and executed every time you log in into the machine, and can be modified according to your needs.
+
+While in your =$HOME= directory or ~/ you can access this file via *vi* editor doing:
+#+BEGIN_SRC sh
+vi .cshrc
+#+END_SRC 
+
+Once you type *<enter>* you will be able to modify and personalize this file. This file is personal and contains some lines that configures your personal account in the cluster/supercomputer, hence, it is important to be careful with the modifications done in it.
+
+This is how a typical *.cshrc* file looks like:
+#+BEGIN_SRC sh
+module load vasp
+module load ase
+module load povray
+
+setenv PATH ~/bin:/home/jarceram/apps:${PATH}
+
+setenv DB ~/Dropbox/Post-Doc/workbooks_jmax/databases/
+
+if ! $?PYTHONPATH then
+    setenv PYTHONPATH
+endif
+
+setenv PYTHONPATH /share/apps/python2.6-extra/lib/python2.6/site-packages:${PYTHONPATH}
+
+setenv VASPDIR '/share/apps/vasp/5.4.1/bin'
+setenv VASP_COMMAND '/share/apps/openmpi-1.10.2-intel/bin/mpirun ${VASPDIR}/${VASP_EXEC}'
+setenv VASP_PP_PATH /share/apps/vasp/vasp-potentials
+
+# To create aliases, please go to the .cshrc.ext file
+source ~/.cshrc.ext
+#+END_SRC
+
+The user must to make sure that the enviromental variables that links VASP executables with ASE are correct and pointing to correct and accessible locations. Those variables are *VASPDIR*, *VASP_COMMAND* and *VASP_PP_PATH*.
+
+Also, depending on the cluster or supercomputer you are working on, you should be able to set helpful environmental variables by loading modules that were defined by the administrators. This is shown in the first three lines in the example *.cshrc*.
+
+If you have doubts about what your *.cshrc*  file should contain, ask somebody in the lab, he/she will be happy to help you.
+
+
+** Linux
+These code blocks contain code that can be copied and pasted onto a Linux terminal or a Python interpreter, depending on the example. When using script files, you copy all lines at the once and paste them into a file that can be executed. On the other hand, if you are using the terminal or python interpreter you should copy and execute each line at a time.
+#+BEGIN_SRC sh
+# First line in code 
+# Second line in code
+#+END_SRC
+
+The second code block that follows the first contains the expected result when executing the code in the first code block. An example of this can be seen here:
+#+BEGIN_SRC python
+print (5 + 4) * (1./2) 
+#+END_SRC 
+
+#+RESULTS:
+: 4.5
 
 **** Basic bash shell commands
 The commands will help you navigate through your folders, copy files, remove files and some other basic shell commands will be used in the examples of this section. 
@@ -300,61 +551,15 @@ emacs
 #+caption: Emacs GUI
 [[./figures/emacs.png]]
 
-**** Configuration of .cshrc file
-When you log in to a system, you can assume that there are certain default parameters and applications that will be enabled upon login and entering your shell. The most common types of shells used are *BASH* shells and *CSH/TCSH* shells. Every shell will have a .(shell)rc file associated with it. In almost all situations, a user must modify the list of programs, defaults and executables in order to suit his or her needs. This information is stored in the *.cshrc* file in your system, because we have set up all of our systems to work with *CSH* shells. 
-This file is loaded and executed every time you log in into the machine, and can be modified according to your needs.
-
-While in your =$HOME= directory or ~/ you can access this file via *vi* editor doing:
-#+BEGIN_SRC sh
-vi .cshrc
-#+END_SRC 
-
-Once you type *<enter>* you will be able to modify and personalize this file. This file is personal and contains some lines that configures your personal account in the cluster/supercomputer, hence, it is important to be careful with the modifications done in it.
-
-This is how my *.cshrc* file in uHPC looks like:
-#+BEGIN_SRC sh
-module load vasp
-module load ase
-module load povray
-
-setenv PATH ~/bin:/home/jarceram/apps:/home/jarceram/bin/vtstscripts:/home/jarceram/bin/web_scripts:/home/jarceram/apps/VASP-master:${PATH}
-
-####### ASE DATABASE #######
-setenv DB ~/Dropbox/Post-Doc/workbooks_jmax/databases/
-
-if ! $?PYTHONPATH then
-    setenv PYTHONPATH
-endif
-
-setenv PYTHONPATH /share/apps/ase-3.10.0/lib/python2.6/site-packages:/share/apps/python2.6-extra/lib/python2.6/site-packages:${PYTHONPATH}
-
-setenv VASPDIR '/share/apps/vasp/5.4.1/bin'
-setenv VASP_COMMAND '/share/apps/openmpi-1.10.2-intel/bin/mpirun ${VASPDIR}/${VASP_EXEC}'
-setenv VASP_PP_PATH /share/apps/vasp/vasp-potentials
-
-###### CALYPSO ANALYSIS TOOL KIT ##########
-setenv PYTHONPATH /home/jarceram/apps/CALYPSO/CALYPSO_ANALYSIS_KIT-2/lib64/python:${PYTHONPATH}
-setenv PATH /home/jarceram/apps/CALYPSO/CALYPSO_ANALYSIS_KIT-2:${PATH}
-##########################################
-
-# To create aliases, please go to the .cshrc.ext file
-source ~/.cshrc.ext
-#+END_SRC
-
-To begin with, you just have to make sure that the enviromental variables that links VASP executables with ASE are correct. Those variables are *VASPDIR*, *VASP_COMMAND* and *VASP_PP_PATH*.
-
-Also, depending on the cluster or supercomputer you are working on, you should be able to set helpful environmental variables by loading modules that were defined by the administrators. I am doing this in my own account with the first three lines in my *.cshrc*.
-
-If you have doubts about what your *.cshrc*  file should contain, ask somebody in the lab, he/she will be happy to help you.
-*** Python
-**** Introduction
+** Python
+*** Introduction
 Python is a programming language which is used and documented extensively in scientific programming. We use python to interface with the Atomic Simulation Environment (ASE), which is used to build, setup and modify molecular models.
 One of the best resources for learning scientific python is through [[http://www.scipy-lectures.org/][SciPy]], which has extensive notes and examples on using python. [[http://kitchingroup.cheme.cmu.edu/pycse/pycse.html][PYCSE]] is a module written by [[http://kitchingroup.cheme.cmu.edu/][John Kitchin]] and has many examples which use standard Python Modules, as well as custom modules in PYCSE. We recommend that you practise these examples as much as possible, to get a good understanding of python and how to use it to suit your needs. 
-**** Common used commands and basics
+*** Common used commands and basics
 Even though it is impossible to be thorough in explaining in detail all commands and functions, we will show some of the most common commands and functions that you will more likely see in python scripts used for some of us in the lab. Again, we encourage you to review the broad documentation in the official webpage of [[https://docs.python.org/2/][Python]]. 
 
 In order to test the commands and functions you should intialize a python interpreter, with the command "python" in a linux terminal while in a computer with Python installed in it.
-***** Print
+**** Print
 #+BEGIN_SRC python
 print 'Hello, this is a sample sentence!'
 print 'This\tis\ttab\tseparated\ttext'
@@ -364,7 +569,7 @@ print 'This\tis\ttab\tseparated\ttext'
 : Hello, this is a sample sentence!
 : This	is	tab	separated	text
 
-***** Arrays and Dictionaries
+**** Arrays and Dictionaries
 #+BEGIN_SRC python
 import numpy as np
 
@@ -387,7 +592,7 @@ print b['Month']
 : {'Year': 'YYYY', 'Day': 'DD', 'Month': 'MM'}
 : MM
 
-***** Variable definition
+**** Variable definition
 In this section we will define 4 types of variables: string variables, scalar variables (either integer or float numbers), vector or 1-D array and matrix or 2-D array.
 #+BEGIN_SRC python
 string = 'sample text'
@@ -407,7 +612,7 @@ print array_2d
 : [1, 3, 6, -4, 0.95]
 : [[1, 2], [-3, 2.0]]
 
-**** Loading python modules and functions
+*** Loading python modules and functions
 In order to use not pre-loaded commands or functions in python you need to load them first from their modules. This means that by default Python has loaded a set of modules which contains the commands or functions that you can use right away, however, if you want to use a function that is not pre-loaded then you need to load it from the corresponding module. 
 
 Probably the most common modules that you are going to use are these:
@@ -429,7 +634,7 @@ from ase.calculators.vasp import Vasp
 
 #+RESULTS:
 
-**** Simple data manipulation example
+*** Simple data manipulation example
 Data extraction and manipulation is an activity that become important, specially when dealing with huge data files or when automatization is required in order to post-process the data in an efficient way.
 
 Lets consider that you want to determine the value of the lattice parameter of a bulk structure that minimizes the energy of the system. Do not worry to much right now in the details behind this. One approach to determine that is determining the energy of the system while changing the value of the lattice constant and then fitting the data to an equation to obtain the value that minimizes the energy. For now, we will focus in using python to extract data and manipulate them to create a simple plot. We will explain later how to determine these data points with a valid set up.
@@ -495,7 +700,7 @@ Look at the four last lines, we want to display whatever were saved in the varia
 #+caption: Example plot
 [[./figures/py_ex_data.png]]
 
-*** Atomic Simulation Environment (ASE)
+** Atomic Simulation Environment (ASE)
 ASE is an Atomic Simulation Environment written in the Python programming language with the aim of setting up, steering, and analyzing atomistic simulations (adapted from [[https://wiki.fysik.dtu.dk/ase/about.html][ASE]]). The ASE has been constructed with a number of “design goals” that make it:
 
 - Easy to use:
@@ -836,115 +1041,6 @@ print atoms2
 #+RESULTS:
 : Atoms(symbols='CHO193Si96', positions=..., cell=[[20.09, 0.0, 0.0], [1.2e-15, 19.738, 0.0], [7.9999999999999998e-16, 7.9999999999999998e-16, 13.141999999999999]], pbc=[True, True, True])
 : Atoms(symbols='CHO193Si96', positions=..., cell=[[20.09, 0.0, 0.0], [1.2e-15, 19.738, 0.0], [7.9999999999999998e-16, 7.9999999999999998e-16, 13.141999999999999]], pbc=[True, True, True])
-
-** Computing Concepts
-*** Queues
-Once you have created a model, all that is left is for you to submit your calculation to the queue. The queue is a utility that accepts job submissions from users, implements a fair use policy, and allocates resources based on job requirements and other parameters. Most of the systems used by our group are managed by the [[http://slurm.schedmd.com/][=SLURM Workload Manager=]]. Maxwell is managed by the [[http://www.adaptivecomputing.com/products/open-source/torque/][=Torque Resource Manager=]]. Naturally, the configuration keywords and parameters are different for both systems, and every job submission script must contain these parameters for it to be accepted by the queue
-
-For =SLURM=
-
-#+BEGIN_SRC sh
-#SBATCH -p (queue partition)
-#SBATCH -o myMPI.o%j
-#SBATCH -N (number of nodes) -n (number of processors per node)
-#SBATCH -t (walltime in hours)
-#SBATCH --mail-type=END
-#SBATCH --mail-user=(user email id)
-#+END_SRC_sh
-
-For =Torque=
-#+BEGIN_SRC sh
-#PBS -e myMPI.e%j
-#PBS -o myMPI.o%j
-#PBS -m ae
-#PBS -M (user email id)	
-#PBS -l (walltime in hours)
-#PBS -r n
-#PBS -l nodes=(number of nodes):ppn=(number of processors per node)
-#PBS -l pmem=2500mb (Memory requested per node)
-#PBS -S /bin/tcsh (Specify type of Shell)
-#+END_SRC
-
-A more detailed explanation of these parameters follows:
-- queue partition: This specifies the partition to which you want to submit your job. These are different across different systems.
-- number of nodes: A node is a group of processors, which are designed to work together with maximum efficiency. A simple example of a node would be a computer with an Intel i5 processor, where the single node has 4 processors. 
-- number of processors: This is the number of processors present in a node. Usually, every user is expected to request all processors in a node. The configuration of nodes vary from system to system.
-- walltime in hours: This specifies the time until which the job will execute on the system. Once runtime exceeds this number, the job execution is terminated. 
-
-*** Jobscripts
-Jobscripts are executable files of a defined environment, which consist of executable code. Jobscripts can be in a variety of formats. However, the most commonly used ones are python jobscripts, shell and cshell jobscripts.
-A jobscript and a simple file are differentiated by the top line identifier. This line tells the compiler and the interpreter what type of file it is. When a file has this identifier, an extension is generally not required. 
-
-An example python jobscript is  as follows
-#+BEGIN_SRC sh
-#!/usr/bin/env python --> File environment identifier
-
-#SBATCH -p batch
-#SBATCH -o myMPI.o%j
-#SBATCH -N 5 -n 100                            [SLURM Parameters]
-#SBATCH -t 168:00:00
-#SBATCH --mail-type=END
-#SBATCH --mail-user=hthirumalai@gmail.com
-
-# Your executable python code begins here
-from ase.io import read
-from ase.calculators.vasp import Vasp
-
-...
-#+END_SRC
-
-#+BEGIN_SRC sh
-#!/usr/bin/env python
-
-#PBS -e stderr
-#PBS -o stdout
-#PBS -m ae
-#PBS -M hthirumalai@gmail.com
-#PBS -l walltime=100:00:00
-#PBS -r n
-#PBS -l nodes=1:ppn=12
-#PBS -l pmem=2500mb
-#PBS -S /bin/tcsh
-#PBS -V
-
-from ase import *
-from ase.calculators.vasp import Vasp
-
-#+END_SRC
-
-An example shell jobscript is
-#+BEGIN_SRC sh
-#!/bin/sh --> File environment identifier
-
-#SBATCH -p batch
-#SBATCH -o myMPI.o%j
-#SBATCH -N 5 -n 100                            [SLURM Parameters]
-#SBATCH -t 168:00:00
-#SBATCH --mail-type=END
-#SBATCH --mail-user=hthirumalai@gmail.com
-
-# Your executable shell script begins here
-echo 'VASP starting execution ..'
-
-...
-#+END_SRC
-
-#+BEGIN_SRC sh
-#!/bin/sh
-
-#PBS -e stderr
-#PBS -o stdout
-#PBS -m ae
-#PBS -M mayerzmytm@gmail.com
-#PBS -l walltime=100:00:00
-#PBS -r n
-#PBS -l nodes=1:ppn=12
-#PBS -l pmem=2500mb
-#PBS -S /bin/tcsh
-#PBS -V
-
-mpirun -np 20 vasp_mpi 
-#+END_SRC
 
 ** Setting up and Submitting a VASP Calculation
 *** Quick Introduction to VASP
