@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c+ch}{\PYGdefaultZsh{}!/bin/sh \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZgt{} File environment identifier}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}p batch}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}o myMPI.o\PYGdefaultZpc{}j}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}N 5 \PYGdefaultZhy{}n 100                            [SLURM Parameters]}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}t 168:00:00}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}type=END}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}user=hthirumalai@gmail.com}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Your executable shell script begins here}
+\PYGdefault{n+nb}{echo} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}VASP starting execution ..\PYGdefaultZsq{}}
+
+...
+\end{Verbatim}

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{matplotlib.pyplot} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{plt}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} This is only a comment.}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Reading data file.}
+\PYGdefault{n}{data} \PYGdefault{o}{=} \PYGdefault{n+nb}{open}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}py\PYGdefaultZus{}ex\PYGdefaultZus{}data.txt\PYGdefaultZsq{}}\PYGdefault{p}{,}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}r\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{lines} \PYGdefault{o}{=} \PYGdefault{n}{data}\PYGdefault{o}{.}\PYGdefault{n}{readlines}\PYGdefault{p}{()}
+\PYGdefault{n}{a} \PYGdefault{o}{=} \PYGdefault{p}{[]}
+\PYGdefault{n}{e} \PYGdefault{o}{=} \PYGdefault{p}{[]}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} To go through all lines we conveniently use a FOR loop}
+\PYGdefault{k}{for} \PYGdefault{n}{line} \PYGdefault{o+ow}{in} \PYGdefault{n}{lines}\PYGdefault{p}{:}
+  \PYGdefault{n}{values} \PYGdefault{o}{=} \PYGdefault{n}{line}\PYGdefault{o}{.}\PYGdefault{n}{split}\PYGdefault{p}{()}
+  \PYGdefault{n}{a}\PYGdefault{o}{.}\PYGdefault{n}{append}\PYGdefault{p}{(}\PYGdefault{n}{values}\PYGdefault{p}{[}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{])}
+  \PYGdefault{n}{e}\PYGdefault{o}{.}\PYGdefault{n}{append}\PYGdefault{p}{(}\PYGdefault{n}{values}\PYGdefault{p}{[}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{])}
+
+\PYGdefault{k}{print} \PYGdefault{n}{a}
+\PYGdefault{k}{print} \PYGdefault{n}{e}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{plot}\PYGdefault{p}{(}\PYGdefault{n}{a}\PYGdefault{p}{,}\PYGdefault{n}{e}\PYGdefault{p}{,}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}s:k\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{show}\PYGdefault{p}{()}
+\end{Verbatim}

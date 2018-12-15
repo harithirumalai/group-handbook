@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{os}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase} \PYGdefault{k+kn}{import} \PYGdefault{n}{Atoms}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase.io} \PYGdefault{k+kn}{import} \PYGdefault{n}{read}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase.calculators.vasp} \PYGdefault{k+kn}{import} \PYGdefault{n}{Vasp}
+\end{Verbatim}

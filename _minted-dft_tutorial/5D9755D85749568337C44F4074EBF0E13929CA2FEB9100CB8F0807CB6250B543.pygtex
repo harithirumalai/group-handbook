@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+scratch directory: \PYGdefault{n+nv}{\PYGdefaultZdl{}SCRATCH}
+project directory: /global/project/projectdirs/m2029/
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}p regular}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}C knl}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}A m2029}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}o myMPI.o\PYGdefaultZpc{}j}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}N 1 \PYGdefaultZhy{}n 64}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}t 24:00:00}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}type=END}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}user=@gmail.com}
+
+AND
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}p regular}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}C haswell}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}A m2029}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}o myMPI.o\PYGdefaultZpc{}j}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}N 1 \PYGdefaultZhy{}n 32}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}t 24:00:00}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}type=END}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}user=@gmail.com}
+\end{Verbatim}

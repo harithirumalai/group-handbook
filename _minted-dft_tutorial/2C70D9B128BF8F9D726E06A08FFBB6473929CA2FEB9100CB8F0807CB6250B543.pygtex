@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+project directory: /project/grabow
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}p batch}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}o myMPI.o\PYGdefaultZpc{}j}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}N 1 \PYGdefaultZhy{}n 24}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}t 24:00:00}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}type=END}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}SBATCH \PYGdefaultZhy{}\PYGdefaultZhy{}mail\PYGdefaultZhy{}user=@gmail.com}
+\end{Verbatim}

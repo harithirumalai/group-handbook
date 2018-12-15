@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase.io} \PYGdefault{k+kn}{import} \PYGdefault{n}{read}\PYGdefault{p}{,} \PYGdefault{n}{write}
+
+\PYGdefault{n}{atoms} \PYGdefault{o}{=} \PYGdefault{n}{read}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}MFI.cif\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Write the cartesian coordinates file in the =vasp= POSCAR format.}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} File written in the folder \PYGdefaultZsq{}images\PYGdefaultZsq{}}
+\PYGdefault{n}{write}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}images/POSCAR\PYGdefaultZus{}ZSM\PYGdefaultZhy{}5\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{atoms}\PYGdefault{p}{,} \PYGdefault{n}{format}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}vasp\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Write the cartesian coordinates file in the =xyz= format}
+\PYGdefault{n}{write}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}images/atoms\PYGdefaultZus{}xyz\PYGdefaultZsq{}}\PYGdefault{p}{,} \PYGdefault{n}{atoms}\PYGdefault{p}{,} \PYGdefault{n}{format}\PYGdefault{o}{=}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}xyz\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{Verbatim}
