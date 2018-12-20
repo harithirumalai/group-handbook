@@ -3,4 +3,9 @@ List of items which need to be included in the tutorial in future.
 2) Working with dictionaries to store and manipulate data
 3) Using Visit, Vesta, Povray
 4) Creating NEB images and starting calculations
-5) 
+
+VASP Errors
+ ZBRENT: fatal error in bracketing
+     please rerun with smaller EDIFF, or copy CONTCAR
+     to POSCAR and continue
+ 
