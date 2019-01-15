@@ -1,0 +1,19 @@
+# From the Atoms and Atom modules
+from ase import Atom, Atoms
+from ase.visualize import view
+from ase.io import read, write
+
+# Creating a random model with H, O and C at random positions
+atoms = Atoms([Atom('H', [0, 0, 0]),
+               Atom('O', [1, 1, 1]),
+               Atom('C', [2, 2, 1])])
+
+# Set a cell of dimensions 10 \AA
+atoms.set_cell([10, 10, 10])
+write('images/not-centered.png', atoms, show_unit_cell=True)
+# The atoms and the cell originate at [0, 0, 0], and the model will not be centered within the cell
+# it is important to center the model so that there is equal vacuum on all sides.
+atoms.center()
+
+write('images/centered.png', atoms, show_unit_cell=True)
+write('images/POSCAR_random', atoms, format='vasp')

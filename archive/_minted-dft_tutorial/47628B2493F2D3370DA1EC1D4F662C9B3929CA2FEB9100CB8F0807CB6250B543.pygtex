@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir example
+\PYGdefault{n+nb}{cd }example
+\end{Verbatim}

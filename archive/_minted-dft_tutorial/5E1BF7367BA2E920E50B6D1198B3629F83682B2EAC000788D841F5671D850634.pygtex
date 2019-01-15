@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{n}{string} \PYGdefault{o}{=} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}sample text\PYGdefaultZsq{}}
+\PYGdefault{n}{scalar} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{12}
+\PYGdefault{n}{array\PYGdefaultZus{}1d} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{3}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{6}\PYGdefault{p}{,}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{4}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{0.95}\PYGdefault{p}{]}
+\PYGdefault{n}{array\PYGdefaultZus{}2d} \PYGdefault{o}{=} \PYGdefault{p}{[[}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{],[}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{3}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{2.0}\PYGdefault{p}{]]}
+
+\PYGdefault{k}{print} \PYGdefault{n}{string}
+\PYGdefault{k}{print} \PYGdefault{n}{scalar}
+\PYGdefault{k}{print} \PYGdefault{n}{array\PYGdefaultZus{}1d}
+\PYGdefault{k}{print} \PYGdefault{n}{array\PYGdefaultZus{}2d}
+\end{Verbatim}

@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c+ch}{\PYGdefaultZsh{}!/bin/sh}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}e stderr}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}o stdout}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}m ae}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}M mayerzmytm@gmail.com}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}l walltime=100:00:00}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}r n}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}l nodes=1:ppn=12}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}l pmem=2500mb}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}S /bin/tcsh}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}PBS \PYGdefaultZhy{}V}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Your executable shell script begins here}
+\PYGdefault{n+nb}{echo} \PYGdefault{l+s+s1}{\PYGdefaultZsq{}VASP starting execution ..\PYGdefaultZsq{}}
+\end{Verbatim}

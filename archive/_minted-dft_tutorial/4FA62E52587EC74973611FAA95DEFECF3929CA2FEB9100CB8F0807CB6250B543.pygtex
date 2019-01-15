@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ssh \PYGdefaultZhy{}X user\PYGdefaultZus{}name@supercomputer\PYGdefaultZus{}address
+\end{Verbatim}

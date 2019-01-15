@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c}{\PYGdefaultZsh{} Copies the file renamed.dat from test/ to the current directory (.)}
+cp \PYGdefault{n+nb}{test}/renamed.dat .
+ls
+\end{Verbatim}

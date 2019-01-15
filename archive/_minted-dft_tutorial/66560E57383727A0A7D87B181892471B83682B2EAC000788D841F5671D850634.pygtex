@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase.structure} \PYGdefault{k+kn}{import} \PYGdefault{n}{molecule}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{ase.visualize} \PYGdefault{k+kn}{import} \PYGdefault{n}{view}
+
+\PYGdefault{n}{atoms} \PYGdefault{o}{=} \PYGdefault{n}{molecule}\PYGdefault{p}{(}\PYGdefault{l+s+s1}{\PYGdefaultZsq{}H2O\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{atoms}\PYGdefault{o}{.}\PYGdefault{n}{set\PYGdefaultZus{}cell}\PYGdefault{p}{([}\PYGdefault{l+m+mi}{10}\PYGdefault{p}{,} \PYGdefault{l+m+mi}{10}\PYGdefault{p}{,} \PYGdefault{l+m+mi}{10}\PYGdefault{p}{])}
+\PYGdefault{n}{atoms}\PYGdefault{o}{.}\PYGdefault{n}{center}\PYGdefault{p}{()}
+
+\PYGdefault{n}{view}\PYGdefault{p}{(}\PYGdefault{n}{atoms}\PYGdefault{p}{)}
+\end{Verbatim}

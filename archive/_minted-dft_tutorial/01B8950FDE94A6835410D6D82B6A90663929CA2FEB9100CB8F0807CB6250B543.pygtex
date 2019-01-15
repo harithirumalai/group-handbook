@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c}{\PYGdefaultZsh{} This creates a file renamed.dat}
+touch renamed.dat
+
+mkdir \PYGdefault{n+nb}{test}
+mv renamed.dat \PYGdefault{n+nb}{test}/
+
+ls \PYGdefault{n+nb}{test}
+\end{Verbatim}

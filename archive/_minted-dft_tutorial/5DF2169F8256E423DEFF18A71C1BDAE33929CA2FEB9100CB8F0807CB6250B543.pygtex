@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+module load vasp
+module load ase
+module load povray
+
+setenv PATH \PYGdefaultZti{}/bin:/home/jarceram/apps:/home/jarceram/bin/vtstscripts:/home/jarceram/bin/web\PYGdefaultZus{}scripts:/home/jarceram/apps/VASP\PYGdefaultZhy{}master:\PYGdefault{l+s+si}{\PYGdefaultZdl{}\PYGdefaultZob{}}\PYGdefault{n+nv}{PATH}\PYGdefault{l+s+si}{\PYGdefaultZcb{}}
+
+\PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{} ASE DATABASE \PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+setenv DB \PYGdefaultZti{}/Dropbox/Post\PYGdefaultZhy{}Doc/workbooks\PYGdefaultZus{}jmax/databases/
+
+\PYGdefault{k}{if} ! \PYGdefault{n+nv}{\PYGdefaultZdl{}?}PYTHONPATH \PYGdefault{k}{then}
+    setenv PYTHONPATH
+endif
+
+setenv PYTHONPATH /share/apps/ase\PYGdefaultZhy{}3.10.0/lib/python2.6/site\PYGdefaultZhy{}packages:/share/apps/python2.6\PYGdefaultZhy{}extra/lib/python2.6/site\PYGdefaultZhy{}packages:\PYGdefault{l+s+si}{\PYGdefaultZdl{}\PYGdefaultZob{}}\PYGdefault{n+nv}{PYTHONPATH}\PYGdefault{l+s+si}{\PYGdefaultZcb{}}
+
+setenv VASPDIR \PYGdefault{l+s+s1}{\PYGdefaultZsq{}/share/apps/vasp/5.4.1/bin\PYGdefaultZsq{}}
+setenv VASP\PYGdefaultZus{}COMMAND \PYGdefault{l+s+s1}{\PYGdefaultZsq{}/share/apps/openmpi\PYGdefaultZhy{}1.10.2\PYGdefaultZhy{}intel/bin/mpirun \PYGdefaultZdl{}\PYGdefaultZob{}VASPDIR\PYGdefaultZcb{}/\PYGdefaultZdl{}\PYGdefaultZob{}VASP\PYGdefaultZus{}EXEC\PYGdefaultZcb{}\PYGdefaultZsq{}}
+setenv VASP\PYGdefaultZus{}PP\PYGdefaultZus{}PATH /share/apps/vasp/vasp\PYGdefaultZhy{}potentials
+
+\PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{} CALYPSO ANALYSIS TOOL KIT \PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+setenv PYTHONPATH /home/jarceram/apps/CALYPSO/CALYPSO\PYGdefaultZus{}ANALYSIS\PYGdefaultZus{}KIT\PYGdefaultZhy{}2/lib64/python:\PYGdefault{l+s+si}{\PYGdefaultZdl{}\PYGdefaultZob{}}\PYGdefault{n+nv}{PYTHONPATH}\PYGdefault{l+s+si}{\PYGdefaultZcb{}}
+setenv PATH /home/jarceram/apps/CALYPSO/CALYPSO\PYGdefaultZus{}ANALYSIS\PYGdefaultZus{}KIT\PYGdefaultZhy{}2:\PYGdefault{l+s+si}{\PYGdefaultZdl{}\PYGdefaultZob{}}\PYGdefault{n+nv}{PATH}\PYGdefault{l+s+si}{\PYGdefaultZcb{}}
+\PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+
+\PYGdefault{c}{\PYGdefaultZsh{} To create aliases, please go to the .cshrc.ext file}
+\PYGdefault{n+nb}{source} \PYGdefaultZti{}/.cshrc.ext
+\end{Verbatim}

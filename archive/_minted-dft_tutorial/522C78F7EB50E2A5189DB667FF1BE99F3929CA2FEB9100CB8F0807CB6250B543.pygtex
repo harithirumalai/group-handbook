@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c}{\PYGdefaultZsh{} List contents before deletion}
+ls \PYGdefault{n+nb}{test}\PYGdefaultZhy{}1
+
+\PYGdefault{c}{\PYGdefaultZsh{} Remove renamed.dat from test\PYGdefaultZhy{}1}
+rm \PYGdefault{n+nb}{test}\PYGdefaultZhy{}1/renamed.dat
+
+\PYGdefault{n+nb}{echo} \PYGdefault{l+s+s2}{\PYGdefaultZdq{}Deleted\PYGdefaultZdq{}}
+
+\PYGdefault{c}{\PYGdefaultZsh{} List contents after deletion}
+ls \PYGdefault{n+nb}{test}\PYGdefaultZhy{}1
+
+\PYGdefault{c}{\PYGdefaultZsh{} Remove test\PYGdefaultZhy{}1 folder}
+\PYGdefault{c}{\PYGdefaultZsh{} List contents of current directory}
+ls
+
+rm \PYGdefaultZhy{}r \PYGdefault{n+nb}{test}\PYGdefaultZhy{}1
+
+\PYGdefault{c}{\PYGdefaultZsh{} List contents of current directory after deletion}
+ls
+\end{Verbatim}
