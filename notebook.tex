@@ -280,7 +280,7 @@
     
 
     
-    \section{Tutorial - The Grabow Group}\label{tutorial---the-grabow-group}
+    \section{The Grabow Group Handbook}\label{the-grabow-group-handbook}
 
 Authors: Hari Thirumalai, Juan Manuel Arce-Ramos and Karun Kumar Rao
 
@@ -593,7 +593,7 @@ searching for =Terminal= in Apple's Spotlight Search (command+space).
 
 \begin{figure}
 \centering
-\includegraphics{./figures/terminal-mac.png}
+\includegraphics{figures/terminal-mac.png}
 \caption{Terminal window on Mac OS}
 \end{figure}
 
@@ -604,7 +604,7 @@ opened by hitting Ctrl+Shift+T.
 
 \begin{figure}
 \centering
-\includegraphics{./figures/Ubuntu-terminal.png}
+\includegraphics{figures/Ubuntu-terminal.png}
 \caption{Terminal window on Linux}
 \end{figure}
 
@@ -615,7 +615,7 @@ MobaXTerm.
 
 \begin{figure}
 \centering
-\includegraphics{./figures/moba.png}
+\includegraphics{figures/moba.png}
 \caption{MobaXTerm Terminal window on Windows}
 \end{figure}
 
@@ -872,358 +872,379 @@ echo "This is the second line" >> hello.txt
 Reading the contents of \texttt{output.txt} should give you
 \texttt{If\ you\textquotesingle{}re\ reading\ this,\ your\ life\ is\ going\ to\ be\ miserable,\ muhahahahah\ This\ is\ the\ second\ line}
 
-    \subparagraph{Copy, move and delete files and
-folders}\label{copy-move-and-delete-files-and-folders}
+    \subparagraph{Copying, Moving and
+Deleting}\label{copying-moving-and-deleting}
 
-Remove, copy files, move or renanme files are tasks that are very often
-used when working with a terminal to explore and manipulate data files.
-Lets continue with the tutorial with these code lines in order to show
-you how they work.
-
-Lets start with renaming the file you just created before "hello.txt".
-We will use the "\emph{=mv=}" command to show the two main uses of this
-function. The first use we will show here is as rename command.
-\#+BEGIN\_SRC sh mv hello.txt renamed.dat ls \#+END\_SRC
-
-Remember that with "\emph{=ls=}" command we are showing the content of
-the current folder. You should see now a "rename.dat" file in your
-current position. \#+RESULTS: : renamed.dat
-
-To move a file from one folder to another we will first create a folder
-called test, and move the file "renamed.dat" into that folder.
-\#+BEGIN\_SRC sh \# This creates a file renamed.dat touch renamed.dat
-
-mkdir test mv renamed.dat test/
-
-ls test \#+END\_SRC
-
-\section{+RESULTS:}\label{results}
-
-: renamed.dat
-
-A file or folder may be copied and pasted into another file or folder of
-the same name, or different name using the \emph{=cp=} command. Let us
-demonstrate how this can be done by copying the file "renamed.dat", from
-the folder \emph{test} and into the current directory. \#+BEGIN\_SRC sh
-\# Copies the file renamed.dat from test/ to the current directory (.)
-cp test/renamed.dat . ls \#+END\_SRC
-
-\section{+RESULTS:}\label{results-1}
-
-\section{+begin\_example}\label{begin_example}
-
-\section{dft\_tutorial.org}\label{dft_tutorial.org}
-
-Icon dft\_tutorial (Copia en conflicto de Juan Manuel Arce
-2016-09-01).org dft\_tutorial (Juan Manuel Arce's conflicted copy
-2016-09-07).org dft\_tutorial.html dft\_tutorial.org figures
-py\_ex\_data.txt renamed.dat test \#+end\_example
-
-It is also possible to copy an entire folder by using the \emph{=cp=}
-command recursively. To use a command recursively, you must pass the
-argument =-r= along with the command. The usage of recursive copying is
-demonstrated below. We will try to copy the entire folder test and
-create another folder test-1 with the same contents \#+BEGIN\_SRC sh cp
--r test test-1 ls test ls test-1 \#+END\_SRC
-
-\section{+RESULTS:}\label{results-2}
-
-\begin{description}
-\tightlist
-\item[: renamed.dat]
-renamed.dat
-\end{description}
-
-To remove a file or a folder, one should use the \emph{=rm=} command as
-\#+BEGIN\_SRC sh \# List contents before deletion ls test-1
-
-\section{Remove renamed.dat from
-test-1}\label{remove-renamed.dat-from-test-1}
-
-rm test-1/renamed.dat
-
-echo "Deleted"
-
-\section{List contents after
-deletion}\label{list-contents-after-deletion}
-
-ls test-1
-
-\section{Remove test-1 folder}\label{remove-test-1-folder}
-
-\section{List contents of current
-directory}\label{list-contents-of-current-directory}
-
-ls
-
-rm -r test-1
-
-\section{List contents of current directory after
-deletion}\label{list-contents-of-current-directory-after-deletion}
-
-ls
-
-\section{+END\_SRC}\label{end_src}
-
-\section{+RESULTS:}\label{results-3}
-
-\section{+begin\_example}\label{begin_example-1}
-
-\section{dft\_tutorial.org}\label{dft_tutorial.org-1}
-
-Icon dft\_tutorial (Copia en conflicto de Juan Manuel Arce
-2016-09-01).org dft\_tutorial (Juan Manuel Arce's conflicted copy
-2016-09-07).org dft\_tutorial.html dft\_tutorial.org figures
-py\_ex\_data.txt renamed.dat test test-1
-
-\section{dft\_tutorial.org}\label{dft_tutorial.org-2}
-
-Icon dft\_tutorial (Copia en conflicto de Juan Manuel Arce
-2016-09-01).org dft\_tutorial (Juan Manuel Arce's conflicted copy
-2016-09-07).org dft\_tutorial.html dft\_tutorial.org figures
-py\_ex\_data.txt renamed.dat test \#+end\_example
-
-**** Text editors VI Editor and Emacs are commonly used text editors in
-the world of computing. They are similar to something familiar like
-Notepad in windows. Text editors are extremely important because they
-can open any file the contains normal ASCII text. These files can be
-anything from configuration files to scripts. They are very lightweight
-and are extremely versatile. Both editors are fairly difficult to work
-with at first, and possess a steep learning curve. They are useful for
-different purposes, and it is best to know the basics of both, to ensure
-a smooth manner of working. Outside of standard tutorials, we strongly
-encourage you to look up resources on the internet. It has always
-happened that we learn something new with every new Google search. *****
-VI Editor vi editor is a very powerful and handy text editor used
-commonly by members in the group. The best way one can learn this editor
-is to go through the VIM Tutorial. This can be accessed on any terminal
-by typing \#+BEGIN\_SRC sh vimtutor \#+END\_SRC
-
-\section{+RESULTS:}\label{results-4}
-
-\section{+BEGIN\_EXAMPLE}\label{begin_example-2}
-
-\section{= W e l c o m e t o t h e V I M T u t o r - Version 1.7
-=}\label{w-e-l-c-o-m-e-t-o-t-h-e-v-i-m-t-u-t-o-r---version-1.7}
+These command \textbf{cp} and \textbf{mv} are among the most commonly
+used ones in a terminal. They can be interchangably used, but are
+completely different in operation. Using the file \texttt{output.txt} as
+the example, it's contents can be copied to another file
+\texttt{output-copy.txt} by executing the command
 
 \begin{verbatim}
- Vim is a very powerful editor that has many commands, too many to
- explain in a tutor such as this.  This tutor is designed to describe
- enough of the commands that you will be able to easily use Vim as
- an all-purpose editor.
-
- The approximate time required to complete the tutor is 25-30 minutes,
- depending upon how much time is spent with experimentation.
+cp output.txt output-copy.txt
 \end{verbatim}
 
-\section{+END\_EXAMPLE}\label{end_example}
+This will create a new file of name \texttt{output-copy.txt} if it does
+not exist. Otherwise, the command will overwrite the existing file for
+same name with the contents from \texttt{output.txt}. If the user would
+like to copy folders, the \texttt{recursive} option must be enabled. The
+example given below copies the entire folder \texttt{ghi} from its
+original location to the destination, and is pasted with the new name
+\texttt{xyz}.
 
-***** Emacs Emacs is again a very powerful and versatile text editor,
-used by some members (Juan Manuel and Hari) in the group. Emacs can be
-accessed by typing =emacs= in the terminal. In most systems, the emacs
-that pops up is one built into the command line, in a manner similar to
-the VI editor. The version of emacs used by us in the group has a
-graphical user interface associated with it, as well as many useful
-packages and functions built in. This emacs is intuitively called jmax,
-also the work of John Kitchin. Emacs can be learned by opening it and
-accessing its tutorial on the main page.
+\begin{verbatim}
+cp -r abc/def/ghi abc/xyz
+\end{verbatim}
 
-\section{+BEGIN\_SRC sh}\label{begin_src-sh}
+The \textbf{mv} command is used in the following way. Execution of the
+command below
 
-emacs \#+END\_SRC
+\begin{verbatim}
+mv output.txt output-copy.txt
+\end{verbatim}
 
-\section{+RESULTS:}\label{results-5}
+renames \texttt{output.txt} as \texttt{output-copy.txt}, and does not
+retain the original file. This command can also be used for moving or
+renaming folders as is. The idea of directory structure and navigation
+is the same as before.
 
-\section{+attr\_org: :width 200}\label{attr_org-width-200}
+Finally, files and folders can be deleted using the command \textbf{rm}.
+Files can be deleted with this command in the same way as \textbf{cp},
+while deletion of folders require the \texttt{recursive} option enabled.
+Examples follow
 
-\section{+attr\_html: :width 600px}\label{attr_html-width-600px}
+\begin{verbatim}
+rm test-file
+rm -r test-folder
+\end{verbatim}
 
-\section{+caption: Emacs GUI}\label{caption-emacs-gui}
+    \paragraph{Text editors}\label{text-editors}
 
-{[}{[}./figures/emacs.png{]}{]}
+VI and Emacs are commonly used text editors in the world of computing.
+They are similar to familiar applications like Notepad in windows. Text
+editors are extremely important because they can open any file the
+contains ASCII text. These files can be anything from configuration
+files to scripts. They are lightweight and are extremely versatile.
 
-** Python *** Introduction Python is a programming language which is
-used and documented extensively in scientific programming. We use python
-to interface with the Atomic Simulation Environment (ASE), which is used
-to build, setup and modify molecular models. One of the best resources
-for learning scientific python is through
-{[}{[}http://www.scipy-lectures.org/{]}{[}SciPy{]}{]}, which has
-extensive notes and examples on using python.
-{[}{[}http://kitchingroup.cheme.cmu.edu/pycse/pycse.html{]}{[}PYCSE{]}{]}
-is a module written by
-{[}{[}http://kitchingroup.cheme.cmu.edu/{]}{[}John Kitchin{]}{]} and has
-many examples which use standard Python Modules, as well as custom
-modules in PYCSE. We recommend that you practise these examples as much
-as possible, to get a good understanding of python and how to use it to
-suit your needs. *** Common used commands and basics Even though it is
-impossible to be thorough in explaining in detail all commands and
-functions, we will show some of the most common commands and functions
-that you will more likely see in python scripts used for some of us in
-the lab. Again, we encourage you to review the broad documentation in
-the official webpage of
-{[}{[}https://docs.python.org/2/{]}{[}Python{]}{]}.
+Both editors are fairly difficult to work with at first and possess a
+steep learning curve. They are useful for different purposes and it is
+best to know the basics of both to ensure an efficient use of time.
+Outside of standard tutorials, we strongly encourage you to look up
+resources on the internet. It has always happened that we learn
+something with every new Google search.
 
-In order to test the commands and functions you should intialize a
-python interpreter, with the command "python" in a linux terminal while
-in a computer with Python installed in it. **** Print \#+BEGIN\_SRC
-python print 'Hello, this is a sample sentence!' print
-'This\tis\ttab\tseparated\ttext' \#+END\_SRC
+\subparagraph{VI Editor}\label{vi-editor}
 
-\section{+RESULTS:}\label{results-6}
+VI editor is a very powerful and handy text editor used commonly by
+members in the group. The best way one can learn this editor is to go
+through the VIM Tutorial. This can be accessed on any terminal by typing
 
-\begin{description}
-\tightlist
-\item[: Hello, this is a sample sentence!]
-This is tab separated text
-\end{description}
+\begin{verbatim}
+vimtutor
+\end{verbatim}
 
-**** Arrays and Dictionaries \#+BEGIN\_SRC python import numpy as np
+which throws up this welcome screen.
 
-\section{Array with a range of numbers from 0 to 5, with step size of
-1.}\label{array-with-a-range-of-numbers-from-0-to-5-with-step-size-of-1.}
+\begin{verbatim}
 
-\section{Here, the end point is not
-included.}\label{here-the-end-point-is-not-included.}
+=    W e l c o m e   t o   t h e   V I M   T u t o r    -    Version 1.7      =
+===============================================================================
 
-a = np.arange(0, 5, 1) print a
+     Vim is a very powerful editor that has many commands, too many to
+     explain in a tutor such as this.  This tutor is designed to describe
+     enough of the commands that you will be able to easily use Vim as
+     an all-purpose editor.
 
-\section{Dictionary with keys and corresponding values showing date
-format}\label{dictionary-with-keys-and-corresponding-values-showing-date-format}
+     The approximate time required to complete the tutor is 25-30 minutes,
+     depending upon how much time is spent with experimentation.
+\end{verbatim}
 
-b = \{'Day': 'DD', 'Month': 'MM', 'Year': 'YYYY'\}
+\subparagraph{Emacs}\label{emacs}
 
-print b print b{[}'Month'{]} \#+END\_SRC
+Emacs is again a powerful and versatile text editor, used by some
+members (Karun and Hari) in the group. Emacs can be accessed by typing
+\texttt{emacs} in the terminal. In most systems, the emacs that pops up
+is one built into the command line, in a manner similar to the VI
+editor.
 
-\section{+RESULTS:}\label{results-7}
+Emacs can be learned by opening it and accessing its tutorial on the
+main page.
 
-\begin{description}
-\tightlist
-\item[: {[}0 1 2 3 4{]}]
+\begin{figure}
+\centering
+\includegraphics{figures/emacs.png}
+\caption{Emacs Scratch Window}
+\end{figure}
+
+    \subsection{Python}\label{python}
+
+\subsubsection{Introduction}\label{introduction}
+
+Python is a programming language which is used and documented
+extensively by the scientific communtiy. We use python to interface and
+understand the Atomic Simulation Environment (ASE) which is used to
+build, setup and modify molecular models. The best resources for
+learning scientific python is through
+\href{http://www.scipy-lectures.org/}{SciPy} which has extensive notes
+and examples on using python for scientific computing.
+\href{http://kitchingroup.cheme.cmu.edu/pycse/pycse.html}{PYCSE} is a
+module written by \href{http://kitchingroup.cheme.cmu.edu/}{John
+Kitchin} and has many examples which use standard Python Modules as well
+as custom modules in PYCSE. We recommend that you practice these
+examples as much as possible to obtain a good understanding of python
+and how to use it to suit your needs.
+
+    \subsubsection{Getting in the Groove}\label{getting-in-the-groove}
+
+This section shows some of the more common commands and functions that
+you will see in python scripts used by some of the group members. Again,
+we encourage you to review the massive/huge documentation for
+\href{https://docs.python.org/2/}{python}
+
+On a command line, the python interpreter can be accessed through the
+command \texttt{python} assuming that python is installed in it. The
+following code blocks will be executable if you are using the iPython
+Notebook. If you are using the read-only html or pdf versions of the
+tutorial, you can copy the python code onto the interpreter, or onto a
+script.
+
+    \paragraph{Print}\label{print}
+
+The simplest and most common bit of code ever created!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hello, this is a sample sentence!}\PY{l+s+s1}{\PYZsq{}}
+        \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{This}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{is}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{tab}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{separated}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{text}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello, this is a sample sentence!
+This	is	tab	separated	text
+
+    \end{Verbatim}
+
+    \paragraph{Arrays and Dictionaries}\label{arrays-and-dictionaries}
+
+Arrays and dictionaries are useful data types used to store large
+amounts of data that can be easily accessed and indexed. They can become
+fairly complex, but the following code block shows a simple application
+of these data types. We suggest that the reader builds a working
+knowledge of these data types, given the data-intensive nature of the
+work done in the group.
+
+Numpy arrays and lists are interchangeable datatypes that behave
+differently. Numpy is an immensely powerful python module with built-in
+functionalitites that take care of most commonly mathematical
+operations. The type of array that Numpy generates is called an
+\texttt{numpy.ndarray}.
+
+Dictionaries are data structures that work on the concept of key-value
+pairs, where the key is used to index the dictionary and extract the
+value corresponding to the key. Much like 2D and 3D arrays, dictionaries
+can be nested within themselves to create massive data-structures and
+databases.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        
+        \PY{c+c1}{\PYZsh{} Array with a range of numbers from 0 to 5, with step size of 1.}
+        \PY{c+c1}{\PYZsh{} Here, the end point is not included.}
+        \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{k}{print} \PY{n}{a}
+        
+        \PY{c+c1}{\PYZsh{} Array with 10 numbers between 0 and 1}
+        \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+        \PY{k}{print} \PY{n}{a}
+        
+        \PY{c+c1}{\PYZsh{} Dictionary with keys and corresponding values showing date format}
+        \PY{n}{b} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Month}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YYYY}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+        
+        \PY{k}{print} \PY{n}{b}
+        \PY{k}{print} \PY{n}{b}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Month}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4]
+[0.         0.55555556 1.11111111 1.66666667 2.22222222 2.77777778
+ 3.33333333 3.88888889 4.44444444 5.        ]
 \{'Year': 'YYYY', 'Day': 'DD', 'Month': 'MM'\}
-
 MM
-\end{description}
 
-**** Variable definition In this section we will define 4 types of
-variables: string variables, scalar variables (either integer or float
-numbers), vector or 1-D array and matrix or 2-D array. \#+BEGIN\_SRC
-python string = 'sample text' scalar = 12 array\_1d =
-{[}1,3,6,-4,0.95{]} array\_2d = {[}{[}1,2{]},{[}-3,2.0{]}{]}
+    \end{Verbatim}
 
-print string print scalar print array\_1d print array\_2d \#+END\_SRC
+    \paragraph{Types of Variables}\label{types-of-variables}
 
-\section{+RESULTS:}\label{results-8}
+Here we will define 4 types of variables: string variables, scalar
+variables (either integer or float numbers), vector or 1-D array and
+matrix or 2-D array.
 
-\begin{description}
-\tightlist
-\item[: sample text]
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{string} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample text}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{scalar} \PY{o}{=} \PY{l+m+mi}{12}
+        \PY{n}{array\PYZus{}1d} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mf}{0.95}\PY{p}{]}
+        \PY{n}{array\PYZus{}2d} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mf}{2.0}\PY{p}{]}\PY{p}{]}
+        
+        \PY{k}{print} \PY{n}{string} 
+        \PY{k}{print} \PY{n}{scalar}
+        \PY{k}{print} \PY{n}{array\PYZus{}1d}
+        \PY{k}{print} \PY{n}{array\PYZus{}2d}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+sample text
 12
+[1, 3, 6, -4, 0.95]
+[[1, 2], [-3, 2.0]]
 
-{[}1, 3, 6, -4, 0.95{]}
+    \end{Verbatim}
 
-{[}{[}1, 2{]}, {[}-3, 2.0{]}{]}
-\end{description}
+    \subsubsection{Loading python modules and
+functions}\label{loading-python-modules-and-functions}
 
-*** Loading python modules and functions In order to use not pre-loaded
-commands or functions in python you need to load them first from their
-modules. This means that by default Python has loaded a set of modules
-which contains the commands or functions that you can use right away,
-however, if you want to use a function that is not pre-loaded then you
-need to load it from the corresponding module.
+To use the wonderful functionalities of python modules like
+\texttt{numpy,\ scipy,\ matplotlib,\ pandas,\ ase} in addition to the
+default modules the user must explicitly import them in the python
+codes.
 
 Probably the most common modules that you are going to use are these:
-\textbar{} module \textbar{} example functions \textbar{} Description
-\textbar{}
-\textbar{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\textbar{}
-\textbar{} os \textbar{} mkdir, remove, getcwd, chdir \textbar{} module
-to access operative system functionality \textbar{} \textbar{} ase
-\textbar{} Atoms \textbar{} useful to handle atomic objects \textbar{}
-\textbar{} ase.io \textbar{} read, write \textbar{} used to load and
-write atomic objects \textbar{} \textbar{} ase.calculators \textbar{}
-Vasp, Abinit \textbar{} take atomic objects and calculate energies,
-forces, etc \textbar{} \textbar{} \textbar{} \textbar{} \textbar{}
 
-Modules are loaded as follows \#+BEGIN\_SRC python import os from ase
-import Atoms from ase.io import read from ase.calculators.vasp import
-Vasp \#+END\_SRC
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Module & Example Functions & Description\tabularnewline
+\midrule
+\endhead
+os & mkdir, makedirs chdir, getcwd, listdir path, symlink & System
+I/O\tabularnewline
+ase & Atom, Atoms, build & Create atoms objects\tabularnewline
+ase.io & read, write & Atoms objects read and write\tabularnewline
+ase.calculators & Vasp, NWChem & Setup and run
+calculations\tabularnewline
+shutil & copy, move & High level file I/O\tabularnewline
+\bottomrule
+\end{longtable}
 
-\section{+RESULTS:}\label{results-9}
+Modules are loaded as follows. Module errors show up in the following
+way.
 
-*** Simple data manipulation example Data extraction and manipulation is
-an activity that become important, specially when dealing with huge data
-files or when automatization is required in order to post-process the
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} import os}
+        \PY{k+kn}{import} \PY{n+nn}{osa} \PY{c+c1}{\PYZsh{}typo}
+        \PY{k+kn}{from} \PY{n+nn}{ase} \PY{k+kn}{import} \PY{n}{atoms}
+        \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}
+        \PY{k+kn}{from} \PY{n+nn}{ase.calculators.vasp} \PY{k+kn}{import} \PY{n}{Vasp}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        ImportError                               Traceback (most recent call last)
+
+        <ipython-input-3-12e1b204f232> in <module>()
+          1 \# import os
+    ----> 2 import osa \#typo
+          3 from ase import atoms
+          4 from ase.io import read
+          5 from ase.calculators.vasp import Vasp
+
+
+        ImportError: No module named osa
+
+    \end{Verbatim}
+
+    \subsubsection{Simple data manipulation}\label{simple-data-manipulation}
+
+Data extraction and manipulation is important when dealing with huge
+data files or when automation is required in order to post-process the
 data in an efficient way.
 
-Lets consider that you want to determine the value of the lattice
-parameter of a bulk structure that minimizes the energy of the system.
-Do not worry to much right now in the details behind this. One approach
-to determine that is determining the energy of the system while changing
-the value of the lattice constant and then fitting the data to an
-equation to obtain the value that minimizes the energy. For now, we will
-focus in using python to extract data and manipulate them to create a
-simple plot. We will explain later how to determine these data points
-with a valid set up.
+As an example, you want to determine the value of the lattice parameter
+of a bulk structure that minimizes the energy of the system. A simple
+approach to determine this value is to determine the energy of the
+system while changing the the lattice constant. Then, the energy and
+volume for each lattice constant is fit to an equation to obtain the
+volume that minimizes the energy. From the volume, one can extract the
+lattice constant given a shape of unit cell.
 
-Create a text file using \emph{vi} called py\_ex\_data.txt and copy all
-lines. Note that data columns are separated by tabs. \#+BEGIN\_SRC sh
-3.8 -12.28653631 3.85 -12.65124072 3.9 -12.88611724 3.95 -13.01158939 4
--13.04446413 4.05 -12.99864981 4.1 -12.88660177 4.15 -12.71939621 4.2
--12.5064955 \#+END\_SRC
+We will use python to extract data and manipulate them to create a
+simple plot. Create a text file using \emph{vi} called py\_ex\_data.txt
+and copy all lines. Note that data columns are separated by tabs.
+\texttt{3.8\ -12.28653631\ 3.85\ \ \ \ -12.65124072\ 3.9\ -12.88611724\ 3.95\ \ \ \ -13.01158939\ 4\ \ \ -13.04446413\ 4.05\ \ \ \ -12.99864981\ 4.1\ -12.88660177\ 4.15\ \ \ \ -12.71939621\ 4.2\ -12.5064955}
 
-\section{+BEGIN\_SRC sh :exports none}\label{begin_src-sh-exports-none}
+    Therefore, executing the command
 
-\section{Create file with data mentioned
-above}\label{create-file-with-data-mentioned-above}
+\texttt{cat\ \textgreater{}\ \ py\_ex\_data.txt\ \textless{}\textless{}\ EOF}
+gives us
 
-cat \textgreater{} py\_ex\_data.txt \textless{}\textless{} EOF 3.8
--12.28653631 3.85 -12.65124072 3.9 -12.88611724 3.95 -13.01158939 4
--13.04446413 4.05 -12.99864981 4.1 -12.88660177 4.15 -12.71939621 4.2
--12.5064955 EOF \#+END\_SRC
+\begin{verbatim}
+3.8 -12.28653631
+3.85    -12.65124072
+3.9 -12.88611724
+3.95    -13.01158939
+4   -13.04446413
+4.05    -12.99864981
+4.1 -12.88660177
+4.15    -12.71939621
+4.2 -12.5064955
+EOF
+\end{verbatim}
 
-A simple code to read this file and extract the datapoints could look
-like the following: \#+BEGIN\_SRC python import matplotlib.pyplot as plt
+    A simple code to read this file and extract the datapoints could look
+like the following:
 
-\section{This is only a comment.}\label{this-is-only-a-comment.}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} This is a comment. }
+        \PY{c+c1}{\PYZsh{} Reading data file.}
+        \PY{n}{data} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{py\PYZus{}ex\PYZus{}data.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{lines} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{readlines}\PY{p}{(}\PY{p}{)}
+        \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{e} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} To go through all lines we conveniently use a FOR loop}
+        \PY{c+c1}{\PYZsh{} All data is stored in the empty lists a and e}
+        \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{lines}\PY{p}{:}
+          \PY{n}{values} \PY{o}{=} \PY{n}{line}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+          \PY{n}{a}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n}{e}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{print} \PY{n}{a}
+        \PY{k}{print} \PY{n}{e}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{e}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{s:k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
 
-\section{Reading data file.}\label{reading-data-file.}
 
-data = open('py\_ex\_data.txt','r') lines = data.readlines() a = {[}{]}
-e = {[}{]} \# To go through all lines we conveniently use a FOR loop for
-line in lines: values = line.split() a.append(values{[}0{]})
-e.append(values{[}1{]})
+    \begin{Verbatim}[commandchars=\\\{\}]
+['3.8', '3.85', '3.9', '3.95', '4', '4.05', '4.1', '4.15', '4.2']
+['-12.28653631', '-12.65124072', '-12.88611724', '-13.01158939', '-13.04446413', '-12.99864981', '-12.88660177', '-12.71939621', '-12.5064955']
 
-print a print e plt.plot(a,e,'s:k') plt.show()\\
-\#+END\_SRC
+    \end{Verbatim}
 
-\section{+RESULTS:}\label{results-10}
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} [<matplotlib.lines.Line2D at 0x60fda3810>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_36_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Atomic Simulation Environment
+(ASE)}\label{atomic-simulation-environment-ase}
 
-\begin{description}
-\tightlist
-\item[: {[}'3.8', '3.85', '3.9', '3.95', '4', '4.05', '4.1', '4.15',
-'4.2'{]}]
-{[}'-12.28653631', '-12.65124072', '-12.88611724', '-13.01158939',
-'-13.04446413', '-12.99864981', '-12.88660177', '-12.71939621',
-'-12.5064955'{]}
-\end{description}
-
-Look at the four last lines, we want to display whatever were saved in
-the variables \emph{a} and \emph{e}, and we used pyplot to generate a
-graph with those datapoints. The resulting plot should look like the
-following:
-
-\section{+attr\_org: :width 200}\label{attr_org-width-200-1}
-
-\section{+attr\_html: :width 400px}\label{attr_html-width-400px}
-
-\section{+caption: Example plot}\label{caption-example-plot}
-
-{[}{[}./figures/py\_ex\_data.png{]}{]}
-
-** Atomic Simulation Environment (ASE) ASE is an Atomic Simulation
-Environment written in the Python programming language with the aim of
-setting up, steering, and analyzing atomistic simulations (adapted from
-{[}{[}https://wiki.fysik.dtu.dk/ase/about.html{]}{[}ASE{]}{]}). The ASE
-has been constructed with a number of ``design goals'' that make it:
+ASE is an Atomic Simulation Environment written in the Python
+programming language with the aim of setting up, steering, and analyzing
+atomistic simulations (adapted from
+\href{https://wiki.fysik.dtu.dk/ase/about.html}{ASE}). The ASE has been
+constructed with a number of ``design goals'' that make it:
 
 \begin{itemize}
 \item
@@ -1254,647 +1275,651 @@ has been constructed with a number of ``design goals'' that make it:
   allows ASE to be used both interactively as well as in scripts.
 \end{itemize}
 
-**** Installing ASE ASE is a bundle of python modules which can be
-invoked or loaded when atomic simulations are required to be set up or
-analyzed. The easiest way of installing ase, is to download the latest
-source tar ball from the website. Once downloaded, the tar ball must be
-extracted, and installation can be completed by running
+\subsubsection{Installing ASE}\label{installing-ase}
 
-\section{+BEGIN\_SRC sh}\label{begin_src-sh-1}
+ASE is a bundle of python modules which can be invoked or loaded when
+atomic simulations are required to be set up or analyzed. The easiest
+way of installing ase, is to download the latest source tar ball from
+the website. Once downloaded, the tar ball must be extracted, and
+installation can be completed by running
 
-python setup.py install -\/-user \#+END\_SRC
+\begin{verbatim}
+python setup.py install --user
+\end{verbatim}
 
-Sometimes, it is necessary to add the installation path in your
-\emph{=.cshrc=} file and add \textasciitilde{}/.local/bin to the front
-of your PATH environment variable. This is dependent on the system you
-are using.
+Tt is necessary to add the installation path in your \emph{=.cshrc=}
+file and add \textasciitilde{}/.local/bin to the front of your PATH
+environment variable. This is dependent on the system you are using.
+Adding this location onto your \texttt{\$PATH} environment variable
+enables you to access \texttt{ase-gui} and \texttt{ase-db} from any
+location on the system.
 
-**** Reading and Viewing simple atoms files We have downloaded a
-standard =cif= file (Crystallographic Information Format) from the
-International Zeolite Website
-{[}{[}http://www.iza-online.org/{]}{[}IZA{]}{]} as an example structure.
-The =cif= file is present as MFI.cif in this folder. The ASE module
-=ase.io= has the functions read and write which are capable of handling
-various formats for atomic structure, and can be used to set up every
-forseeable future =Vasp= calculation. An example of how to read a =cif=
-file is shown in the code block below.
+    \subsubsection{Reading and Viewing simple atoms
+files}\label{reading-and-viewing-simple-atoms-files}
 
-\section{+BEGIN\_SRC python}\label{begin_src-python}
+We have downloaded a standard \emph{cif} file (Crystallographic
+Information Format) from the International Zeolite Website
+\href{http://www.iza-online.org/}{IZA} as an example structure. The
+\emph{cif} file is present as MFI.cif in this folder. The ASE module
+\texttt{ase.io} has the functions read and write which are capable of
+handling various formats for atomic structure, and can be used to set up
+every forseeable future \textbf{Vasp} calculation. An example of how to
+read a \emph{cif} file is shown in the code block below.
 
-\section{Import the read and write functions from the ase.io
-module.}\label{import-the-read-and-write-functions-from-the-ase.io-module.}
+Alternately, you can are use the \texttt{ase.build} class to create
+simple pre-defined gas-phase molecules. In this example, we will create
+a \(H_2O\) molecule.
 
-from ase.io import read, write
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Import the read and write functions from the ase.io module.}
+         \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}\PY{p}{,} \PY{n}{write}
+         
+         \PY{c+c1}{\PYZsh{} Import the molecule function from ase.build}
+         \PY{k+kn}{from} \PY{n+nn}{ase.build} \PY{k+kn}{import} \PY{n}{molecule}
+         
+         \PY{c+c1}{\PYZsh{} Import the visualize function to view the imported atoms object.}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         
+         \PY{c+c1}{\PYZsh{} Load the cif file into a pythonic object called \PYZsq{}atoms\PYZsq{}.}
+         \PY{c+c1}{\PYZsh{}atoms = read(\PYZsq{}MFI.cif\PYZsq{})}
+         
+         \PY{c+c1}{\PYZsh{} Load a water molecule from ase.build}
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{molecule}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H2O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} View the \PYZsq{}atoms\PYZsq{} object.}
+         \PY{n}{view}\PY{p}{(}\PY{n}{atoms}\PY{p}{)}
+\end{Verbatim}
 
-\section{Import the visualize function to view the imported atoms
-object.}\label{import-the-visualize-function-to-view-the-imported-atoms-object.}
 
-from ase.visualize import view
+    \textbf{Vasp} calculations require a certain set of input files for
+calculation initialization. The file that consists of the initial
+structure and cartesian coordinates of the model under investigation is
+the \textbf{POSCAR}. One can simply read a \emph{cif} and write out a
+\textbf{POSCAR} using the functions provided by the \texttt{ase.io}
+module. An example of writing files of various formats is shown below
 
-\section{Load the cif file into a pythonic object called
-'atoms'.}\label{load-the-cif-file-into-a-pythonic-object-called-atoms.}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}\PY{p}{,} \PY{n}{write}
+        
+        \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MFI.cif}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Write the cartesian coordinates file in the =vasp= POSCAR format.}
+        \PY{c+c1}{\PYZsh{} File written in the folder \PYZsq{}images\PYZsq{}}
+        \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}ZSM\PYZhy{}5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Write the cartesian coordinates file in the =xyz= format}
+        \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/atoms.xyz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{)}
+\end{Verbatim}
 
-atoms = read('MFI.cif')
 
-\section{View the 'atoms' object.}\label{view-the-atoms-object.}
+    \subsubsection{Building gas phase
+molecules}\label{building-gas-phase-molecules}
 
-view(atoms) \#+END\_SRC
-
-Note: This jmax interface becomes inactive when you call the view
-function. To make it active again, close the view pop-up and then hit
-Ctrl+g.
-
-=Vasp= calculations require a certain set of input files for calculation
-initialization. One of these files pertains to the initial structure and
-cartesian coordinates of the model under investigation. The name of this
-file is =POSCAR=. One can simply read a =cif= and write out a =POSCAR=
-using the functions provided by the ase.io module. An example of writing
-files of various formats is shown below
-
-\section{+BEGIN\_SRC python}\label{begin_src-python-1}
-
-from ase.io import read, write
-
-atoms = read('MFI.cif')
-
-\section{Write the cartesian coordinates file in the =vasp= POSCAR
-format.}\label{write-the-cartesian-coordinates-file-in-the-vasp-poscar-format.}
-
-\section{File written in the folder
-'images'}\label{file-written-in-the-folder-images}
-
-write('images/POSCAR\_ZSM-5', atoms, format='vasp')
-
-\section{Write the cartesian coordinates file in the =xyz=
-format}\label{write-the-cartesian-coordinates-file-in-the-xyz-format}
-
-write('images/atoms\_xyz', atoms, format='xyz') \#+END\_SRC
-
-\section{+RESULTS:}\label{results-11}
-
-**** Building gas phase molecules Smaller models involving gas phase
-molecules and systems on simple surfaces are usually built up from
-scratch, using the modules and functions availble in ase. This can
-either be done through scripting or through the =ase-gui= interface.
-Extensive documentation on using the =ase-gui= can be accessed on the
-ASE website at
-{[}{[}https://wiki.fysik.dtu.dk/ase/ase/gui/gui.html{]}{[}Link{]}{]}.
+Smaller models involving gas phase molecules and simple surfaces are
+usually built up from scratch, using the modules and functions availble
+in \texttt{ase}. This can either be done through scripting or through
+the \texttt{ase-gui} interface. Extensive documentation on using the
+\texttt{ase-gui} can be accessed in the ASE
+\href{https://wiki.fysik.dtu.dk/ase/ase/gui/gui.html}{documentation}.
 Here, we will provide a quick introduction on creating different
 systems.
 
-The most simple demonstration to begin with, would be to model a simple
-gas phase molecule such as H\_\{2\}O. ASE provides a number of ways to
+The most simple demonstration to begin with would be to model a simple
+gas phase molecule such as \(H_{2}O\). ASE provides a number of ways to
 build and modify models, and we will explore two ways. 1) using python
-scripting and 2) using the ASE Graphical user interface. We recommend
-that you use scripting wherever possible as this keeps track of all
-changes made to the model, whenever documentation is necessary.
+scripting and 2) using the ASE Graphical user interface
+\texttt{ase-gui}. We recommend that you use scripting wherever possible
+as this keeps track of all changes made to the model including the
+documentation.
 
-Gas phase models are the simplest models to make, and are the least
-expesive in terms of computational processing time. Such systems require
-that they are enclosed in a vacuum cell of certain dimensions, depending
-on the size of the model itself. The presence and size of this cell
-ensures that when DFT calculations are performed, and periodic boundary
-conditions are implemented in X, Y and Z directions, there is minimal
-interaction energy between the models. Hence, one should perform
-calculations to ensure that energies and cell sizes are well converged,
-before proceeding to use data from these calculations. We will build a
-simple H2O molecule in a box of 10 x 10 x 10 \AA.
+Gas phase models are the simplest models to create and are the least
+expensive in terms of computational processing requirements. Such
+systems require that they are enclosed in a vacuum cell of certain
+dimensions that depends on the dimensions of the model itself. The
+presence of this cell ensures that when DFT calculations are performed
+and periodic boundary conditions are implemented in \(x\), \(y\) and
+\(z\) directions, there is minimal interaction between the neighboring
+images. Hence, one should perform calculations to ensure that energies
+and cell sizes are well converged, before proceeding to use data from
+these calculations.
 
-Note: ase.structure may have been updated to a newer version, depending
-on your version of ase. \#+BEGIN\_SRC python from ase.structure import
-molecule from ase.visualize import view
+We will build a simple \(H_2O\) molecule in a box of 10 x 10 x 10
+\(\AA\).
 
-atoms = molecule('H2O') atoms.set\_cell({[}10, 10, 10{]}) atoms.center()
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k+kn}{from} \PY{n+nn}{ase.build} \PY{k+kn}{import} \PY{n}{molecule}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{write}
+         
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{molecule}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H2O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{set\PYZus{}cell}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{center}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/molec\PYZus{}h2o\PYZus{}ase\PYZus{}ex.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{)}
+         
+         \PY{n}{view}\PY{p}{(}\PY{n}{atoms}\PY{p}{)}
+\end{Verbatim}
 
-view(atoms) \#+END\_SRC
 
-\section{+attr\_org: :width 100}\label{attr_org-width-100}
+    \begin{figure}
+\centering
+\includegraphics{figures/molec_h2o_ase_ex.png}
+\caption{H2O Molecule}
+\end{figure}
 
-\section{+attr\_html: :width 400px}\label{attr_html-width-400px-1}
+As you can see we have used the \texttt{molecule} and \texttt{view}
+functions from the \texttt{ase.build} and \texttt{ase.visualize} modules
+to build and visualize the molecule. Again, you need to load
+installed/non-default python packages to use them in code.
 
-\section{+caption: H\_\{2\}O molecule in a
-box}\label{caption-h_2o-molecule-in-a-box}
+The next example looks at building a model, or an \texttt{atoms} object
+by explicity setting the element, its cartesian coordinates and the cell
+size of the structure through code.
 
-{[}{[}./figures/molec\_h2o\_ase\_ex.png{]}{]}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Import the Atoms and Atom modules}
+         \PY{k+kn}{from} \PY{n+nn}{ase} \PY{k+kn}{import} \PY{n}{Atom}\PY{p}{,} \PY{n}{Atoms}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}\PY{p}{,} \PY{n}{write}
+         
+         \PY{c+c1}{\PYZsh{} Creating a random model with H, O and C at random positions}
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{Atoms}\PY{p}{(}\PY{p}{[}\PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                        \PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                        \PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Set a cell of dimensions 10 \PYZbs{}AA}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{set\PYZus{}cell}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/not\PYZhy{}centered.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{,} \PY{n}{show\PYZus{}unit\PYZus{}cell}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} The atoms and the cell originate at [0, 0, 0], and the model will not be centered within the cell}
+         \PY{c+c1}{\PYZsh{} it is important to center the model so that there is equal vacuum on all sides.}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{center}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/centered.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{,} \PY{n}{show\PYZus{}unit\PYZus{}cell}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atoms}\PY{p}{,} \PY{n}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vasp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
 
-As you can see we have used the "molecule" and "view" functions from the
-"structure" and "visualize" subpackages in order to build and visualize
-the molecule. Again, you need to load modules and subpackages in order
-to use installed/non-default python packages.
 
-\section{+BEGIN\_SRC python}\label{begin_src-python-2}
+    \includegraphics{figures/not-centered.png}
+\includegraphics{figures/centered.png}
 
-\section{From the Atoms and Atom
-modules}\label{from-the-atoms-and-atom-modules}
+    \paragraph{Building crystal
+structures}\label{building-crystal-structures}
 
-from ase import Atom, Atoms from ase.visualize import view from ase.io
-import read, write
+Crystals are isotropic materials that maintain an order in a microscopic
+scale and in all three dimensions. The building block or the unit cell
+in a crystal when repeated many times in all directions creates a
+macroscopic form of the crystal. In computational simulations, reactions
+that take place over catalysts are typicall simulated over moldes that
+contain a small number of unit cells, with the assumption that the
+thermodynamics and kinetics at the microscopic scale is reproducible at
+the macroscopic sclae. The example in the following figure is the
+structure of the rutile-phase of \(TiO_{2}\). In this figure, the
+dashed-line box represent the limits of the unit cell that is repeated
+in all directions.
 
-\section{Creating a random model with H, O and C at random
-positions}\label{creating-a-random-model-with-h-o-and-c-at-random-positions}
+\href{figures/rut-TiO2.png}{Unit cell of Rutile TiO2}
 
-atoms = Atoms({[}Atom('H', {[}0, 0, 0{]}), Atom('O', {[}1, 1, 1{]}),
-Atom('C', {[}2, 2, 1{]}){]})
+This structure can be created with ASE by using the
+\texttt{ase.spacegroup} module. The create function requires that you to
+provide the crystal spacegroup, the lattice parameters and the scaled
+positions of the unique atoms (the number of atoms provided not
+necessarily match with the number of atoms in the unit cell). We will
+need detailed information about \(TiO_2\) which can be found in
+scientific articles or databases such as
+\href{materialsproject.org}{Materials Project}. A python script that
+creates a rutile \(TiO_2\) bulk crystal is given below
 
-\section{\texorpdfstring{Set a cell of dimensions 10 \AA
-atoms.set\_cell({[}10, 10,
-10{]})}{Set a cell of dimensions 10 atoms.set\_cell({[}10, 10, 10{]})}}\label{set-a-cell-of-dimensions-10-atoms.set_cell10-10-10}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{from} \PY{n+nn}{ase.lattice.spacegroup} \PY{k+kn}{import} \PY{n}{crystal}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{write}
+         
+         \PY{c+c1}{\PYZsh{} Lattice parameters. Experimetnal values for TiO2 rutile}
+         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{4.5937}
+         \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{2.9587}
+         
+         \PY{c+c1}{\PYZsh{} Using the \PYZsq{}crystal\PYZsq{} function from \PYZsq{}spacegroup\PYZsq{} subpackage}
+         \PY{c+c1}{\PYZsh{} Data provided (in order of appearence)}
+         \PY{c+c1}{\PYZsh{} Unique atoms in unit cell; scaled positions of unique atoms;}
+         \PY{c+c1}{\PYZsh{} Space group ID \PYZsh{}; dimension of unit cell (lattice param. and angles)}
+         \PY{n}{rut} \PY{o}{=} \PY{n}{crystal}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{basis}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+m+mf}{0.3048}\PY{p}{,}\PY{l+m+mf}{0.3048}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+            \PY{n}{spacegroup}\PY{o}{=}\PY{l+m+mi}{136}\PY{p}{,} \PY{n}{cellpar}\PY{o}{=}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/rut\PYZhy{}TiO2.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rut}\PY{p}{)}
+         \PY{n}{view}\PY{p}{(}\PY{n}{rut}\PY{p}{)}
+\end{Verbatim}
 
-write('images/not-centered.png', atoms, show\_unit\_cell=True) \# The
-atoms and the cell originate at {[}0, 0, 0{]}, and the model will not be
-centered within the cell \# it is important to center the model so that
-there is equal vacuum on all sides. atoms.center()
 
-write('images/centered.png', atoms, show\_unit\_cell=True)
-write('images/POSCAR\_random', atoms, format='vasp') \#+END\_SRC
+    The \texttt{ase-gui} windows that pops up shows the unit cell of
+rut-TiO\_\{2\} and it consists of two Ti and four O atoms. However, we
+only specified two coordinates(Ti and O) in the script. The
+\texttt{spacegroup} argument lets \texttt{ASE} know where the other
+equivalent atoms should be placed according to symmetric positions that
+are dependent of the space group.
 
-**** Building crystal structures Crystals are materials that maintain an
-order in a microscopic scale and in all three dimensions. In other
-words, the building block (unit cell) of a crystalline material is
-repeated in the 3-dimensional space, or it is isotropic. Take for
-instance the example shown in the following figure in which we are
-displaying the structure of the rutile crystal phase of TiO\_\{2\}
-(rut-TiO\_\{2\}). In this figure, the dashed-line box represent the
-limits of the unit cell that is repeated in all directions.
+The unit cell information and the atomic positions are based on
+experimental values. In almost all cases, these parameters have to be
+optimized for the user defined computational settings (cutoffs,
+accuracy, physics) before it can be used to generate a surface or for
+actual potential energy surfaces. Bulk structure optimization will be
+looked into at a later point in this tutorial.
 
-\section{+attr\_html: :width 600px}\label{attr_html-width-600px-1}
+    \paragraph{Building surfaces}\label{building-surfaces}
 
-\section{+caption: Crystal structure of
-rutile-TiO\_\{2\}}\label{caption-crystal-structure-of-rutile-tio_2}
-
-{[}{[}./figures/rut-TiO2\_ex.png{]}{]}
-
-One way to build a crystal structure through ASE is the "spacegroup"
-subpackage. This subpackage requires that you to provide the crystal
-space group, the lattice parameters and the scaled positions of the
-unique atoms (the number of atoms provided not necessarily match with
-the number of atoms in the unit cell). Lets continue with the example of
-rut-TiO\_\{2\} and try to build the same crystal structure. We will need
-detailed information about this crystal that can be found in scientific
-articles or databases. An example of python script to carry out the task
-can look like the following:
-
-\section{+BEGIN\_SRC python}\label{begin_src-python-3}
-
-from ase.lattice.spacegroup import crystal from ase.visualize import
-view
-
-\section{Lattice parameters. Experimetnal values for TiO2
-rutile}\label{lattice-parameters.-experimetnal-values-for-tio2-rutile}
-
-a = 4.5937 c = 2.9587
-
-\section{Using the 'crystal' function from 'spacegroup'
-subpackage}\label{using-the-crystal-function-from-spacegroup-subpackage}
-
-\section{Data provided (in order of
-appearence)}\label{data-provided-in-order-of-appearence}
-
-\section{Unique atoms in unit cell; scaled positions of unique
-atoms;}\label{unique-atoms-in-unit-cell-scaled-positions-of-unique-atoms}
-
-\section{Space group ID \#; dimension of unit cell (lattice param. and
-angles)}\label{space-group-id-dimension-of-unit-cell-lattice-param.-and-angles}
-
-rut = crystal({[}'Ti','O'{]},
-basis={[}(0.0,0.0,0.0),(0.3048,0.3048,0.0){]}, spacegroup=136,
-cellpar={[}a, a, c, 90, 90, 90{]})
-
-view(rut) \#+END\_SRC
-
-\section{+attr\_html: :width 300px}\label{attr_html-width-300px}
-
-\section{+caption: Output after running the previous python script that
-builds
-rut-TiO\_\{2\}}\label{caption-output-after-running-the-previous-python-script-that-builds-rut-tio_2}
-
-{[}{[}./figures/rut-TiO2\_ase\_ex.png{]}{]}
-
-As you can see from what was displayed through ASE graphical user
-interface, the unit cell of rut-TiO\_\{2\} contains two Ti and four O
-atoms, however, we only specified two positions in the script. This is
-why we need to provide the space group, in order to let know ASE where
-the other equivalent atoms should be placed according to symmetric
-positions that are dependent of the space group.
-
-Even though you can provide of very reliable experimental information,
-the atomic positions and cell size and shape usually need to be
-computationally optimized before can be used to generate a surface or
-for energy comparisons. We will talk later about a method that can be
-used to optimize a crystal structure.
-
-**** Building surfaces If you want to simulate the adsorption of a
-chemical compounds and its interaction with a solid catalyst, you might
-want to create a representative model of the solid in question. Here, we
-explain how to create a surface model that could be used for following
-calculations, such adsorption tests.
+If you want to simulate the adsorption of a chemical species and its
+interaction with a heterogeneous catalyst, you might want to create a
+representative model of the surface/bulk model in question. Here, we
+explain how one can create a surface model that could be used for
+calculations such as adsorption.
 
 We will build a slab of the (101) exposed facet of tetragonal zirconium
-oxide from its crystal structure parameters. First, you will need the
-lattice parameters required to build a bulk crystal (as was done for
-rut-TiO2 above). The lattice parameters are shown in the piece of code
-below, together with an extra line with the function "surface" that can
-be used to build a surface from a bulk crystal model. In this case, the
-function needs a atoms object ("atoms", here in the code), the plane at
-which the cut should be done, the number of layers that should be
-included and the length of the vacuum layer in each side of slab (in
+oxide \(ZrO_2\) from its crystal structure parameters. First, you will
+need the lattice parameters required to build a bulk crystal (as was
+done for \(rut-TiO_2\) above). The lattice parameters are shown in the
+codeblock below, together with an extra line with the function
+\texttt{surface} that can be used to build a surface from a bulk
+crystal. In this case, the function needs an \texttt{atoms} object
+(\texttt{atoms} in the code), the plane at which the cut should be
+considered, the number of layers that should be included in the \(z\)
+direction and the thickness of the vacuum layer in each side of slab (in
 angstroms).
 
-\section{+BEGIN\_SRC python}\label{begin_src-python-4}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k+kn}{from} \PY{n+nn}{ase.lattice.spacegroup} \PY{k+kn}{import} \PY{n}{crystal}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         \PY{k+kn}{from} \PY{n+nn}{ase.lattice.surface} \PY{k+kn}{import} \PY{n}{surface}
+         \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}\PY{p}{,} \PY{n}{write}
+         
+         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.63}
+         \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{5.25}
+         \PY{n}{z} \PY{o}{=} \PY{l+m+mf}{0.05}
+         
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{crystal}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{basis}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{z}\PY{o}{+}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+            \PY{n}{spacegroup}\PY{o}{=}\PY{l+m+mi}{137}\PY{p}{,} \PY{n}{cellpar}\PY{o}{=}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{surface} \PY{o}{=} \PY{n}{surface}\PY{p}{(}\PY{n}{atoms}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mf}{7.5}\PY{p}{)}
+         
+         \PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ZrO2\PYZus{}surf\PYZus{}ex.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{surface}\PY{p}{)}
+         \PY{n}{view}\PY{p}{(}\PY{n}{surface}\PY{p}{)}
+\end{Verbatim}
 
-from ase.lattice.spacegroup import crystal from ase.visualize import
-view from ase.lattice.surface import surface
 
-a = 3.63 c = 5.25 z = 0.05
+    \href{figures/ZrO2_surf_ex.png}{ZrO2 Surface}
 
-atoms = crystal({[}'Zr', 'O'{]}, basis={[}(0.0, 0.0, 0.0), (0.0, 0.5,
-z+0.25){]}, spacegroup=137, cellpar={[}a, a, c, 90, 90, 90{]})
+Even though this process is fairly simple, one needs to be careful in
+the selection of the surface termination. For instance, by looking at
+the slab generated by ASE one can see that the exposed surface in +z
+direction has a oxygen termination, that might not be (and is not) the
+most stable termination. However, by deleting "extra" oxygen atoms on
+top, we are also changing the Zr/O ratio. The surface slab is now no
+longer stoichiometric (\(Zr_{10}O_{18}\) instead of \(Zr_{10}O_{20}\).
+There are multiple solutions to these problems and the best solution
+depends on the case. This is usually not a problem for simple metal
+surfaces that are highly symetrical and pure.
 
-surface = surface(atoms, (1,0,1), 5, 7.5) view(surface) \#+END\_SRC
-
-\section{+attr\_html: :width 200px}\label{attr_html-width-200px}
-
-\section{+caption: Slab of t-ZrO2 (101) built from
-bulk.}\label{caption-slab-of-t-zro2-101-built-from-bulk.}
-
-{[}{[}./figures/ZrO2\_surf\_ex.png{]}{]}
-
-Even though this procedure is very simple, one needs to be really
-careful in the selection of the surface termination. For instance, by
-looking at the slab generated by ASE one can see that the exposed
-surface in +z direction has a oxygen termination, that might not be (and
-is not) the most stable termination. However, by deleting this "extra"
-oxygen atoms on top, we are also changing the Zr/O ratio. The surface
-slab is now no longer stoichiometric (Zr\_\{10\}O\_\{18\} instead of
-Zr\_\{10\}O\_\{20\}). Is usually a good idea to keep the stoichiometry
-in order to avoid strong polarization (\#\#is this right??). This is
-usually not a problem for simple metal surfaces that are highly
-symetrical or are built by only one distinguishable metal.
-
-One way to solve this problem can be creating a slab with an extra layer
-and then deleting the atoms that are not longer needed in order to
+A simple solution to this problem can be creating a slab with an extra
+layer and then deleting the atoms that are not longer needed in order to
 maintain the desirable number of layers. At the end, is possible that we
 need to shift the position of all atoms in the cell in order to keep the
 center of mass in the center of the cell. We are going to use a similar
 script to create a slab with an extra layer and then delete some of the
 atoms, so we keep only 5 layers in total.
 
-\section{+BEGIN\_SRC python}\label{begin_src-python-5}
-
-from ase.lattice.spacegroup import crystal from ase.visualize import
-view from ase.lattice.surface import surface
-
-a = 3.63 c = 5.25 z = 0.05
-
-atoms = crystal({[}'Zr', 'O'{]}, basis={[}(0.0, 0.0, 0.0), (0.0, 0.5,
-z+0.25){]}, spacegroup=137, cellpar={[}a, a, c, 90, 90, 90{]})
-
-surface = surface(atoms, (1,0,1), 6, 7.5)
-
-\section{Lets remove the atoms that should lead to a 5-layered
-non-oxygen terminated stoichiometric
-surface}\label{lets-remove-the-atoms-that-should-lead-to-a-5-layered-non-oxygen-terminated-stoichiometric-surface}
-
-ind2remove = {[}0,1,2,5,33,34{]} for i in sorted(ind2remove,
-reverse=True): del surface{[}i{]}
-
-\section{Tranlate atoms to the new
-center}\label{tranlate-atoms-to-the-new-center}
-
-cell = surface.get\_cell() com = surface.get\_center\_of\_mass()
-surface.translate({[}0,0,0.5*cell{[}2,2{]} - com{[}2{]}{]})
-
-view(surface) \#+END\_SRC
-
-As a result, you should get a new slab with the right termination but
-also one that keeps the Zr/O ratio to 1/2. As you can see in the script
-we have removed some of the atoms (indicating their indixes in the
-atomic object) and we shift the position of the whole slab in the
-z-direction so the center of mass of the slab resides again in the
-center of the cell.
-
-We now can use this slab for following calculations.
-
-**** Get details of an atoms object ASE has many useful functions, which
-when used efficiently are very powerful in automating scripts and
-workflow. Given that we have already learned to build complex models and
-structures, we must also know how to extract details from atoms objects,
-in the case of analysis and post-processing. Examples of simple ase
-functions for this purpose are shown below. \#+BEGIN\_SRC python from
-ase.io import read
-
-\section{Read atoms from previously stored
-POSCAR}\label{read-atoms-from-previously-stored-poscar}
-
-atoms = read('images/POSCAR\_ZSM-5')
-
-\section{Get unit cell parameters}\label{get-unit-cell-parameters}
-
-cell = atoms.get\_cell() print 'Unit cell array:' print cell, '\n'
-
-\section{Get details of all individual atoms making up the entire atoms
-object}\label{get-details-of-all-individual-atoms-making-up-the-entire-atoms-object}
-
-\section{Printing only first 10 atom details, using python list
-indexing}\label{printing-only-first-10-atom-details-using-python-list-indexing}
-
-print('Details of 10 individual atoms: ') for atom in atoms{[}0:10{]}:
-print atom
-
-\section{Get positions of atoms, and print specific
-details}\label{get-positions-of-atoms-and-print-specific-details}
-
-positions = atoms.get\_positions()
-
-\section{Using python string formatting and enumeration
-concepts}\label{using-python-string-formatting-and-enumeration-concepts}
-
-print('\nAtom specific details: ') for i, atom in
-enumerate(atoms{[}0:10{]}): print('Index: \{0\}, Element: \{1\},
-Coordinates: \{2\}'.format(i, atom.symbol, positions{[}i{]}))
-\#+END\_SRC
-
-\section{+RESULTS:}\label{results-12}
-
-\section{+begin\_src sh}\label{begin_src-sh-2}
-
-Unit cell array: {[}{[} 2.00900000e+01 0.00000000e+00
-0.00000000e+00{]}{[} 1.20000000e-15 1.97380000e+01 0.00000000e+00{]} {[}
-8.00000000e-16 8.00000000e-16 1.31420000e+01{]}{]}
-
-Details of 10 individual atoms: Atom('O', {[}10.069108,
-1.3796862000000008, 9.2230555999999986{]}, index=0) Atom('O',
-{[}20.065892000000002, 11.2486862, 2.6520555999999997{]}, index=1)
-Atom('O', {[}10.069108, 8.4893137999999997, 9.2230555999999986{]},
-index=2) Atom('O', {[}20.065892000000002, 18.358313800000001,
-2.6520555999999997{]}, index=3) Atom('O', {[}10.020892000000002,
-18.358313800000001, 3.9189444{]}, index=4) Atom('O',
-{[}0.024107999999998499, 8.4893137999999997, 10.489944400000001{]},
-index=5) Atom('O', {[}10.020892, 11.2486862, 3.9189444{]}, index=6)
-Atom('O', {[}0.0241079999999981, 1.3796862000000008,
-10.489944400000001{]}, index=7) Atom('O', {[}7.7848750000000013,
-1.4665334000000008, 10.5241136{]}, index=8) Atom('O',
-{[}2.2601250000000013, 11.335533400000001, 3.9531135999999991{]},
-index=9)
-
-Atom specific details: Index: 0, Element: O, Position: {[} 10.069108
-1.3796862 9.2230556{]} Index: 1, Element: O, Position: {[} 20.065892
-11.2486862 2.6520556{]} Index: 2, Element: O, Position: {[} 10.069108
-8.4893138 9.2230556{]} Index: 3, Element: O, Position: {[} 20.065892
-18.3583138 2.6520556{]} Index: 4, Element: O, Position: {[} 10.020892
-18.3583138 3.9189444{]} Index: 5, Element: O, Position: {[} 0.024108
-8.4893138 10.4899444{]} Index: 6, Element: O, Position: {[} 10.020892
-11.2486862 3.9189444{]} Index: 7, Element: O, Position: {[} 0.024108
-1.3796862 10.4899444{]} Index: 8, Element: O, Position: {[} 7.784875
-1.4665334 10.5241136{]} Index: 9, Element: O, Position: {[} 2.260125
-11.3355334 3.9531136{]} \#+end\_src
-
-**** Edit a loaded atoms object Pre-loaded atoms objects can be edited
-to suit the requirements of the model, and other constraints. The
-process of editing is simple. First, the relevant model (POSCAR or cif)
-is loaded. Specific details like position can be obtained using relevant
-functions. Modifications to these details are then made, and finally,
-the modifications are implemented in the atoms object using relevant
-functions. An example follows.
-
-\section{+BEGIN\_SRC python}\label{begin_src-python-6}
-
-from ase.io import read
-
-atoms = read('images/POSCAR\_ZSM-5')
-
-\section{Store required atom into a new
-variable.}\label{store-required-atom-into-a-new-variable.}
-
-\section{Note: This is usually done in less explicit
-ways}\label{note-this-is-usually-done-in-less-explicit-ways}
-
-atom = atoms{[}4{]} positions = atoms.get\_positions()
-
-\section{Printing coordinates before implementing
-changes}\label{printing-coordinates-before-implementing-changes}
-
-print 'Coordinates of atom number 4: ', atom.position print 'Element of
-atom number 4: ', atom.symbol
-
-\section{We want to change the element and cartesian coordinates of the
-atom with
-index=4.}\label{we-want-to-change-the-element-and-cartesian-coordinates-of-the-atom-with-index4.}
-
-positions{[}4{]} = {[}1, 1, 1{]} atoms{[}4{]}.symbol = 'C'
-
-\section{Reassign modified positions to original atoms
-object}\label{reassign-modified-positions-to-original-atoms-object}
-
-atoms.set\_positions(positions)
-
-print '\nDetails after implementing changes: ' atom = atoms{[}4{]} print
-'Coordinates of atom number 4: ', atom.position print 'Element of atom
-number 4: ', atom.symbol \#+END\_SRC
-
-\section{+RESULTS:}\label{results-13}
-
-\begin{description}
-\item[: Coordinates of atom number 4: {[} 10.020892 18.3583138
-3.9189444{]}]
-Element of atom number 4: O
-
-Details after implementing changes:
-
-Coordinates of atom number 4: {[} 1. 1. 1.{]}
-
-Element of atom number 4: C
-\end{description}
-
-**** Adding Atoms to Existing Model The atoms object is essentially a
-python list of individual atoms objects. Hence, one can perform the same
-operations on atoms objects as simple lists. New atoms can be added to
-an existing atoms object using the append function in python. However,
-if you want to add an entire atoms object to a pre-existing atoms
-object, then one must use the python extend function. Please read up the
-differences between append() and extend() for better clarity In the
-example shown below, both atoms objects end up identical.
-
-\section{+BEGIN\_SRC python}\label{begin_src-python-7}
-
-from ase.io import read from ase import Atom, Atoms
-
-\section{Read in two pre-existing atoms
-objects}\label{read-in-two-pre-existing-atoms-objects}
-
-atoms = read('images/POSCAR\_ZSM-5') atoms\_new =
-read('images/POSCAR\_random')
-
-\section{Generate a copy of the original atoms
-object}\label{generate-a-copy-of-the-original-atoms-object}
-
-atoms1 = atoms.copy()
-
-\section{To add atoms\_new to atoms, we use the extend()
-function}\label{to-add-atoms_new-to-atoms-we-use-the-extend-function}
-
-atoms1.extend(atoms\_new) print atoms1
-
-\section{Define explicit atom
-objects}\label{define-explicit-atom-objects}
-
-H = Atom('H', {[}0, 0, 0{]}) O = Atom('O', {[}1, 1, 1{]}) C = Atom('C',
-{[}2, 2, 1{]})
-
-\section{Generate a copy of the original atoms
-object}\label{generate-a-copy-of-the-original-atoms-object-1}
-
-atoms2 = atoms.copy()
-
-\section{Use the append() function to individually append the atom
-objects to the atoms
-object}\label{use-the-append-function-to-individually-append-the-atom-objects-to-the-atoms-object}
-
-atoms2.append(H) atoms2.append(O) atoms2.append(C)
-
-print atoms2 \#+END\_SRC
-
-\section{+RESULTS:}\label{results-14}
-
-\begin{description}
-\tightlist
-\item[: Atoms(symbols='CHO193Si96', positions=..., cell={[}{[}20.09,
-0.0, 0.0{]}, {[}1.2e-15, 19.738, 0.0{]}, {[}7.9999999999999998e-16,
-7.9999999999999998e-16, 13.141999999999999{]}{]}, pbc={[}True, True,
-True{]})]
-Atoms(symbols='CHO193Si96', positions=..., cell={[}{[}20.09, 0.0,
-0.0{]}, {[}1.2e-15, 19.738, 0.0{]}, {[}7.9999999999999998e-16,
-7.9999999999999998e-16, 13.141999999999999{]}{]}, pbc={[}True, True,
-True{]})
-\end{description}
-
-** Setting up and Submitting a VASP Calculation *** Quick Introduction
-to VASP Having introduced how to set up a model, and high performance
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k+kn}{from} \PY{n+nn}{ase.lattice.spacegroup} \PY{k+kn}{import} \PY{n}{crystal}
+         \PY{k+kn}{from} \PY{n+nn}{ase.visualize} \PY{k+kn}{import} \PY{n}{view}
+         \PY{k+kn}{from} \PY{n+nn}{ase.lattice.surface} \PY{k+kn}{import} \PY{n}{surface}
+         
+         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.63}
+         \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{5.25}
+         \PY{n}{z} \PY{o}{=} \PY{l+m+mf}{0.05}
+         
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{crystal}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{basis}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{z}\PY{o}{+}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+            \PY{n}{spacegroup}\PY{o}{=}\PY{l+m+mi}{137}\PY{p}{,} \PY{n}{cellpar}\PY{o}{=}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{surface} \PY{o}{=} \PY{n}{surface}\PY{p}{(}\PY{n}{atoms}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mf}{7.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Lets remove the atoms that should lead to a 5\PYZhy{}layered non\PYZhy{}oxygen terminated stoichiometric surface}
+         \PY{n}{ind2remove} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{33}\PY{p}{,}\PY{l+m+mi}{34}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{ind2remove}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{:}
+            \PY{k}{del} \PY{n}{surface}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Translate atoms to the new center}
+         \PY{n}{cell} \PY{o}{=} \PY{n}{surface}\PY{o}{.}\PY{n}{get\PYZus{}cell}\PY{p}{(}\PY{p}{)}
+         \PY{n}{com} \PY{o}{=} \PY{n}{surface}\PY{o}{.}\PY{n}{get\PYZus{}center\PYZus{}of\PYZus{}mass}\PY{p}{(}\PY{p}{)}
+         \PY{n}{surface}\PY{o}{.}\PY{n}{translate}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{cell}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{com}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{view}\PY{p}{(}\PY{n}{surface}\PY{p}{)}
+\end{Verbatim}
+
+
+    As a result, you should get a new slab with the right termination but
+also one that keeps the Zr/O ratio to 1/2. In the script, we have
+specified the indices of atoms that are to be deleted, then we shift the
+position of the whole slab in the z-direction so the center of mass of
+the slab resides again in the center of the cell.
+
+    \subsubsection{Get details of an atoms
+object}\label{get-details-of-an-atoms-object}
+
+\texttt{ASE} has many useful functions which when used efficiently are
+very powerful in automating scripts and workflow. Given that we have
+already learned to build complex models and structures, we must also
+know how to extract details from atoms objects, in the case of analysis
+and post-processing. Examples of simple ase functions for this purpose
+are shown below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}
+         
+         \PY{c+c1}{\PYZsh{} Read atoms from previously stored POSCAR}
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}ZSM\PYZhy{}5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Get unit cell parameters}
+         \PY{n}{cell} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{get\PYZus{}cell}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unit cell array:}\PY{l+s+s1}{\PYZsq{}} 
+         \PY{k}{print} \PY{n}{cell}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} Get details of all individual atoms making up the entire atoms object}
+         \PY{c+c1}{\PYZsh{} Printing only first 10 atom details, using python list indexing}
+         \PY{k}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Details of 10 individual atoms: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{atom} \PY{o+ow}{in} \PY{n}{atoms}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{:}
+             \PY{k}{print} \PY{n}{atom}
+         
+         \PY{c+c1}{\PYZsh{} Get positions of atoms, and print specific details}
+         \PY{n}{positions} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{get\PYZus{}positions}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Using python string formatting and enumeration concepts}
+         \PY{k}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Atom specific details: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{atom} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{atoms}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Index: \PYZob{}0\PYZcb{}, Element: \PYZob{}1\PYZcb{}, Coordinates: \PYZob{}2\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{atom}\PY{o}{.}\PY{n}{symbol}\PY{p}{,} \PY{n}{positions}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Unit cell array:
+[[20.09   0.     0.   ]
+ [ 0.    19.738  0.   ]
+ [ 0.     0.    13.142]] 
+
+Details of 10 individual atoms: 
+Atom('O', [10.069108, 1.3796862, 9.223055599999999], index=0)
+Atom('O', [20.065892, 11.2486862, 2.6520555999999997], index=1)
+Atom('O', [10.069108, 8.4893138, 9.223055599999999], index=2)
+Atom('O', [20.065892, 18.3583138, 2.6520555999999997], index=3)
+Atom('O', [10.020892, 18.3583138, 3.9189444], index=4)
+Atom('O', [0.0241079999999973, 8.4893138, 10.4899444], index=5)
+Atom('O', [10.020892, 11.2486862, 3.9189444], index=6)
+Atom('O', [0.0241079999999973, 1.3796862, 10.4899444], index=7)
+Atom('O', [7.784875, 1.4665334, 10.5241136], index=8)
+Atom('O', [2.260125, 11.335533400000001, 3.953113599999999], index=9)
+
+Atom specific details: 
+Index: 0, Element: O, Coordinates: [10.069108   1.3796862  9.2230556]
+Index: 1, Element: O, Coordinates: [20.065892  11.2486862  2.6520556]
+Index: 2, Element: O, Coordinates: [10.069108   8.4893138  9.2230556]
+Index: 3, Element: O, Coordinates: [20.065892  18.3583138  2.6520556]
+Index: 4, Element: O, Coordinates: [10.020892  18.3583138  3.9189444]
+Index: 5, Element: O, Coordinates: [ 0.024108   8.4893138 10.4899444]
+Index: 6, Element: O, Coordinates: [10.020892  11.2486862  3.9189444]
+Index: 7, Element: O, Coordinates: [ 0.024108   1.3796862 10.4899444]
+Index: 8, Element: O, Coordinates: [ 7.784875   1.4665334 10.5241136]
+Index: 9, Element: O, Coordinates: [ 2.260125  11.3355334  3.9531136]
+
+    \end{Verbatim}
+
+    \paragraph{Edit a loaded atoms object}\label{edit-a-loaded-atoms-object}
+
+Pre-loaded structures loaded as \texttt{atoms} objects can be edited to
+suit the requirements of the model and include other constraints. The
+process of editing is simple. First, the relevant model
+(\texttt{POSCAR,\ cif}, etc..) is loaded. Specific details like position
+can be obtained using relevant functions. Modifications to these details
+are then made, and finally, the modifications are implemented in the
+atoms object using relevant functions. An example follows.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}
+         
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}ZSM\PYZhy{}5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Store required atom into a new variable.}
+         \PY{c+c1}{\PYZsh{} Note: This is usually done in less explicit ways}
+         \PY{n}{atom} \PY{o}{=} \PY{n}{atoms}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}
+         \PY{n}{positions} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{get\PYZus{}positions}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Printing coordinates before implementing changes}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coordinates of atom number 4: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atom}\PY{o}{.}\PY{n}{position}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Element of atom number 4: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atom}\PY{o}{.}\PY{n}{symbol}
+         
+         \PY{c+c1}{\PYZsh{} We want to change the element and cartesian coordinates of the atom with index=4.}
+         \PY{n}{positions}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{atoms}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{symbol} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} Reassign modified positions to original atoms object}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{set\PYZus{}positions}\PY{p}{(}\PY{n}{positions}\PY{p}{)}
+         
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Details after implementing changes: }\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{atom} \PY{o}{=} \PY{n}{atoms}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coordinates of atom number 4: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atom}\PY{o}{.}\PY{n}{position}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Element of atom number 4: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{atom}\PY{o}{.}\PY{n}{symbol}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coordinates of atom number 4:  [10.020892  18.3583138  3.9189444]
+Element of atom number 4:  O
+
+Details after implementing changes: 
+Coordinates of atom number 4:  [1. 1. 1.]
+Element of atom number 4:  C
+
+    \end{Verbatim}
+
+    \paragraph{Adding Atoms to Models}\label{adding-atoms-to-models}
+
+The \texttt{atoms} object is essentially a \texttt{python} list of
+individual atoms objects. Hence, one can perform the same operations on
+atoms objects as simple lists. New atoms can be added to an existing
+atoms object using the \texttt{append} function in python. However, if
+you want to add an entire atoms object to a pre-existing atoms object,
+then one must use python's \texttt{extend} function. Please do read up
+the differences between \texttt{append()} and \texttt{extend()} for
+clarity
+
+In the example shown below, both atoms objects end up identical.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}
+         \PY{k+kn}{from} \PY{n+nn}{ase} \PY{k+kn}{import} \PY{n}{Atom}\PY{p}{,} \PY{n}{Atoms}
+         
+         \PY{c+c1}{\PYZsh{} Read in two pre\PYZhy{}existing atoms objects}
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}ZSM\PYZhy{}5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{atoms\PYZus{}new} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/POSCAR\PYZus{}random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Generate a copy of the original atoms object}
+         \PY{n}{atoms1} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} To add atoms\PYZus{}new to atoms, we use the extend() function}
+         \PY{n}{atoms1}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{atoms\PYZus{}new}\PY{p}{)}
+         \PY{k}{print} \PY{n}{atoms1}
+         
+         \PY{c+c1}{\PYZsh{} Define explicit atom objects}
+         \PY{n}{H} \PY{o}{=} \PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{O} \PY{o}{=} \PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{C} \PY{o}{=} \PY{n}{Atom}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Generate a copy of the original atoms object}
+         \PY{n}{atoms2} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Use the append() function to individually append the atom objects to the atoms object}
+         \PY{n}{atoms2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{H}\PY{p}{)}
+         \PY{n}{atoms2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{O}\PY{p}{)}
+         \PY{n}{atoms2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{C}\PY{p}{)}
+         
+         \PY{k}{print} \PY{n}{atoms2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Atoms(symbols='CHO193Si96', pbc=True, cell=[20.09, 19.738, 13.142])
+Atoms(symbols='CHO193Si96', pbc=True, cell=[20.09, 19.738, 13.142])
+
+    \end{Verbatim}
+
+    \subsection{Setting up and Submitting a VASP
+Calculation}\label{setting-up-and-submitting-a-vasp-calculation}
+
+\subsubsection{Introduction to VASP}\label{introduction-to-vasp}
+
+Having gone over how to set up a model and some high performance
 computing concepts, we can now proceed towards setting up and submitting
 a VASP Calculation.
 
 The Vienna ab initio Simulation Package or
-({[}{[}https://www.vasp.at/{]}{[}VASP{]}{]}) is a code that implements
-Density Functional Theory concepts to perform energy minimization to
-obtain the ground state atomic configuration of the model under
-investigation. =VASP= is installed on all of our supercomputers and can
-be invoked by loading the relevant modules. Currently installed =VASP=
-versions are 5.3.5 and 5.4.1. There is no performance benefit of using
-one over the other. It is a matter of your choice. Calculation times are
-dependent on the size of the system, and more specifically, the number
-of electrons. Calculations for small systems converge to their ground
-states very quickly. However large systems may sometimes run for many
-weeks. It is for this reason that =VASP= is run parallely across many
-processors or nodes. A system utility named =mpirun= is responsible for
-the execution of =VASP= on massively parallel systems, such as ours.
+\href{https://www.vasp.at/}{VASP} is a code that implements Density
+Functional Theory to solve Schrodinger's equation to obtain the ground
+state electron density and energy of a particular system. This system
+consists of a certain number of atoms of a certain type at certain
+cartesian coordinatees.
 
-A standard =VASP= calculation, in short, requires 4 files to initiate a
-calculation - POSCAR - This file contains the cartesian coordinates,
-type and number of species present in the model. - INCAR - This file
-consists of the calculation parameters required by =VASP=. - KPOINTS -
-This file specifies the type of grid required for calculations. - POTCAR
-- This file contains the reference pseudopotentials required for
-calculations.
+These routines can be coupled with optimization routines to perform
+energy minimization based on model structure to calculate the ground
+state atomic configuration of the model. \texttt{VASP} is installed on
+all of our supercomputers and can be included in the \texttt{\$PATH} by
+loading the relevant modules. Currently installed versions are 5.4.1 and
+5.4.4. There is no performance benefit of using one version over the
+other. It is a matter of your choice. Calculation times are dependent on
+the size of the system and more specifically, the number of valence
+electrons. Calculations for small systems converge to their ground state
+configurations fairly quickly. However, large systems may sometimes run
+for many weeks. It is for this reason that \texttt{VASP} is run
+parallely across many processors and nodes. A system utility named
+\texttt{mpirun} is responsible for the execution of \texttt{VASP} on
+massively parallel systems such as supercomputers.
 
-This is just a cursory introduction to the files used by =VASP=. It is
-recommended for you to go through and understand the =VASP= manual and
-other online resources for a better understanding
-{[}{[}https://www.vasp.at/index.php/documentation{]}{[}Link{]}{]}.
+A standard \texttt{VASP} calculation requires 4 files execute correctly:
 
-*** Using ASE to Set Up a Calculation Again, ASE has many functions and
-methods which can be used to set up the entire =VASP= calculation
-through python. Let us recall that we already learnt how to set up the
-model through python by the generation of atoms objects =POSCAR=. The
-=INCAR= is automatically set up by ase when a \emph{Vasp calculator
-object} is used. The user can enter values for calculator parameters in
-this object, and also other specifc triggers to write the =KPOINTS= and
-=POTCAR= files. A simple example follows
+\begin{itemize}
+\tightlist
+\item
+  \texttt{POSCAR} - This file contains the cartesian coordinates, type
+  and number of species present in the model.
+\item
+  \texttt{INCAR} - This file consists of the calculation parameters
+  required by \texttt{VASP}.
+\item
+  \texttt{KPOINTS} - This file specifies the type of grid required for
+  calculations.
+\item
+  \texttt{POTCAR} - This file contains the reference pseudopotentials
+  required for calculations.
+\end{itemize}
 
-\section{+BEGIN\_SRC python}\label{begin_src-python-8}
+This is just a cursory introduction to the files used by \texttt{VASP}.
+It is recommended for you to go through and understand the \texttt{VASP}
+\href{https://www.vasp.at/index.php/documentation}{manual} (joking!) and
+other online resources for a better understanding of the entire concept.
 
-\section{Import the vasp calculator
-object}\label{import-the-vasp-calculator-object}
+    \subsubsection{Using ASE to Set Up a
+Calculation}\label{using-ase-to-set-up-a-calculation}
 
-from ase.calculators.vasp import Vasp
+Again, \texttt{ASE} has many functions and methods which can be used to
+set up a \texttt{VASP} calculation through \texttt{python}. Let us
+recall that we already learnt how to set up the model through python by
+the generation of \texttt{atoms} objects \texttt{POSCAR}. The
+\texttt{INCAR} is automatically set up by \texttt{ASE} when a
+\texttt{Vasp\ Calculator\ object} is used. The user can specify
+calculator parameters in this object, and also other specifc triggers to
+write the \texttt{KPOINTS} and \texttt{POTCAR} files. A simple example
+follows
 
-\section{Read in the cif file, or a pre-made atoms
-object}\label{read-in-the-cif-file-or-a-pre-made-atoms-object}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} Import the vasp calculator object}
+         \PY{k+kn}{from} \PY{n+nn}{ase.calculators.vasp} \PY{k+kn}{import} \PY{n}{Vasp}
+         
+         \PY{c+c1}{\PYZsh{} Read in the cif file, or a pre\PYZhy{}made atoms object}
+         \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figures/MFI.cif}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Define the calculator and its parameters}
+         \PY{n}{calc} \PY{o}{=} \PY{n}{Vasp}\PY{p}{(}\PY{n}{xc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PBE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}  \PY{c+c1}{\PYZsh{} Exchange Correlation Functional}
+                     \PY{n}{encut}\PY{o}{=}\PY{l+m+mi}{400}\PY{p}{,} \PY{c+c1}{\PYZsh{} Plane Wave Cutoff}
+                     \PY{n}{ibrion}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}  \PY{c+c1}{\PYZsh{} Energy Minimization Algorithm}
+                     \PY{n}{kpts}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{c+c1}{\PYZsh{} K\PYZhy{}point grid. Writes KPOINTS FILE}
+                     \PY{n}{ediffg}\PY{o}{=}\PY{l+m+mf}{0.02}\PY{p}{,} \PY{c+c1}{\PYZsh{} Iterative Convergence Criteria}
+                     \PY{n}{nsw}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{)} \PY{c+c1}{\PYZsh{} Maximum number of Iterations}
+         
+         \PY{c+c1}{\PYZsh{} Set the calculator to the atoms object}
+         \PY{n}{atoms}\PY{o}{.}\PY{n}{set\PYZus{}calculator}\PY{p}{(}\PY{n}{calc}\PY{p}{)}
+         
+         \PY{k}{print} \PY{n}{atoms}
+         \PY{k}{print} \PY{n}{atoms}\PY{o}{.}\PY{n}{calc}
+\end{Verbatim}
 
-atoms = read('images/MFI.cif')
 
-\section{Define the calculator and its
-parameters}\label{define-the-calculator-and-its-parameters}
+    \begin{Verbatim}[commandchars=\\\{\}]
+Atoms(symbols='O192Si96', pbc=True, cell=[20.09, 19.738, 13.142], tags={\ldots}, calculator=Vasp({\ldots}))
+<ase.calculators.vasp.vasp.Vasp object at 0x60fef4490>
 
-calc = Vasp(xc='PBE', \# Exchange Correlation Functional encut=400, \#
-Plane Wave Cutoff ibrion=2, \# Energy Minimization Algorithm
-kpts=(2,2,2), \# K-point grid. Writes KPOINTS FILE ediffg=0.02, \#
-Iterative Convergence Criteria nsw=500) \# Maximum number of Iterations
+    \end{Verbatim}
 
-\section{Set the calculator to the atoms
-object}\label{set-the-calculator-to-the-atoms-object}
-
-atoms.set\_calculator(calc)
-
-\section{+END\_SRC}\label{end_src-1}
-
-The snippet of code shown above creates all the files required by
-=VASP=. Creation of files is done in the following manner. First, the
-calculator stores information about the model, the elements, the
+    The snippet of code shown above creates all the files required by
+\texttt{VASP}. Creation of files is done in the following manner. First,
+the calculator stores information about the model, the elements, the
 stoichiometry and the cartesian coordinates. Based on the calculator
 parameters written in by the user, and combining them with defaults, it
-stores the entire list of parameters and creates the =INCAR= file. Based
-on the parameters, and the type of atoms, it creates the =POTCAR= and
-=KPOINTS= files. Finally, the user is free to call vasp at his or her
-convenience.
+stores the entire list of parameters and creates the \texttt{INCAR},
+\texttt{POTCAR} and \texttt{KPOINTS} files. Finally, the user is free to
+call \texttt{Vasp} at his or her convenience and run the calculation.
 
-*** Executing the Calculation We have created all required files for a
-calculation. The next course of action is to invoke =VASP=. This is
-usually done by setting an
-{[}{[}https://en.wikipedia.org/wiki/Environment\_variable{]}{[}Environment
-Variable{]}{]} called 'VASP\_EXEC' in your jobscript. When you submit
-your jobscript to the queue, it will load the specific =VASP= specified
-by you in this environment variable. A simple jobscript, assuming that
+    \subsubsection{Executing Vasp}\label{executing-vasp}
+
+We have created all required files for a calculation. The next course of
+action is to call the \texttt{VASP} executable. This is usually done by
+setting an
+\href{https://en.wikipedia.org/wiki/Environment_variable}{Environment
+Variable} called \texttt{\$VASP\_EXEC} in your jobscript. When you
+submit your jobscript to the queue, it will load the specific
+\texttt{VASP} executable (\texttt{vasp\_std,\ vasp\_gam}) specified by
+the user in this environment variable. A simple jobscript, assuming that
 the cif file is in the same folder, is shown below
 
-\section{+BEGIN\_SRC python}\label{begin_src-python-9}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+ch}{\PYZsh{}!/usr/bin/env python}
+        
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}e stderr}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}o stdout}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}m ae}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}M hthirumalai@gmail.com}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}l walltime=100:00:00}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}r n}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}l nodes=1:ppn=12}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}l pmem=2500mb}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}S /bin/tcsh}
+        \PY{c+c1}{\PYZsh{}PBS \PYZhy{}V}
+        
+        \PY{k+kn}{from} \PY{n+nn}{ase.io} \PY{k+kn}{import} \PY{n}{read}
+        \PY{k+kn}{from} \PY{n+nn}{ase.calculators.vasp} \PY{k+kn}{import} \PY{n}{Vasp}
+        
+        \PY{n}{atoms} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MFI.cif}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{calc} \PY{o}{=} \PY{n}{Vasp}\PY{p}{(}\PY{n}{xc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PBE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{encut}\PY{o}{=}\PY{l+m+mi}{540}\PY{p}{,}
+                    \PY{n}{ibrion}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}
+                    \PY{n}{sigma}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,}
+                    \PY{n}{ediffg}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.02}\PY{p}{,}
+                    \PY{n}{nsw}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{)}
+        
+        \PY{n}{atoms}\PY{o}{.}\PY{n}{set\PYZus{}calculator}\PY{p}{(}\PY{n}{calc}\PY{p}{)}
+        \PY{n}{e} \PY{o}{=} \PY{n}{atoms}\PY{o}{.}\PY{n}{get\PYZus{}potential\PYZus{}energy}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{energy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{e}\PY{p}{)}\PY{p}{)}
+        \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
 
-\section{!/usr/bin/env python}\label{usrbinenv-python}
 
-\section{PBS -e stderr}\label{pbs--e-stderr}
-
-\section{PBS -o stdout}\label{pbs--o-stdout}
-
-\section{PBS -m ae}\label{pbs--m-ae}
-
-\section{PBS -M
-hthirumalai@gmail.com}\label{pbs--m-hthirumalaigmail.com}
-
-\section{PBS -l walltime=100:00:00}\label{pbs--l-walltime1000000}
-
-\section{PBS -r n}\label{pbs--r-n}
-
-\section{PBS -l nodes=1:ppn=12}\label{pbs--l-nodes1ppn12}
-
-\section{PBS -l pmem=2500mb}\label{pbs--l-pmem2500mb}
-
-\section{PBS -S /bin/tcsh}\label{pbs--s-bintcsh}
-
-\section{PBS -V}\label{pbs--v}
-
-from ase.io import read from ase.calculators.vasp import Vasp
-
-atoms = read('MFI.cif')
-
-calc = Vasp(xc='PBE', encut=540, ibrion=2, sigma=0.1, ediffg=-0.02,
-nsw=500)
-
-atoms.set\_calculator(calc) e = atoms.get\_potential\_energy()
-
-f = open('energy', 'w') f.write(str(e)) f.close()
-
-\section{+END\_SRC}\label{end_src-2}
-
-** TODO DFT calculations :noexport: *** TODO Bulk crystal structures
+    ** TODO DFT calculations :noexport: *** TODO Bulk crystal structures
 **** TODO Simple bulk structures **** TODO Optimizing complex bulk
 structures **** TODO Convergence *** TODO Surface calculations
 

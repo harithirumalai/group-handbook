@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-mv hello.txt renamed.dat
-ls
-\end{Verbatim}
