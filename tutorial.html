@@ -13296,6 +13296,7 @@ echo 'VASP starting execution ..'</code></pre>
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=END
 #SBATCH --mail-user=@gmail.com</code></pre>
+<hr>
 <p>uHPC</p>
 
 <pre><code>project directory: /uhpc/grabow
@@ -13306,6 +13307,7 @@ echo 'VASP starting execution ..'</code></pre>
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=END
 #SBATCH --mail-user=@gmail.com</code></pre>
+<hr>
 <p>Juniper</p>
 
 <pre><code>project directory: /project/grabow
@@ -13316,16 +13318,31 @@ echo 'VASP starting execution ..'</code></pre>
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=END
 #SBATCH --mail-user=@gmail.com</code></pre>
+<hr>
 <p>Sabine</p>
 
 <pre><code>project directory: /brazos/grabow
 
 #SBATCH -p batch
+#SBATCH -A grabow
 #SBATCH -o myMPI.o%j   
 #SBATCH -N 1 -n 24
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=END
-#SBATCH --mail-user=@gmail.com</code></pre>
+#SBATCH --mail-user=@gmail.com  
+#SBATCH --constraint="gen9"</code></pre>
+<p>AND</p>
+
+<pre><code>#SBATCH -p batch
+#SBATCH -A grabow
+#SBATCH -o myMPI.o%j   
+#SBATCH -N 1 -n 36
+#SBATCH -t 24:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=@gmail.com  
+#SBATCH --constraint="gen10"</code></pre>
+<p><code>VASP</code> executable names for each type of node, <code>gen9</code> or <code>gen10</code> are appended with the node type. Use ONLY those executables that are suitable for a particular node.</p>
+<hr>
 <p>Cori</p>
 
 <pre><code>scratch directory: $SCRATCH
@@ -13349,6 +13366,7 @@ project directory: /global/project/projectdirs/m2029/
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=END
 #SBATCH --mail-user=@gmail.com</code></pre>
+<hr>
 <p>Stampede2</p>
 
 <pre><code>scratch directory: $SCRATCH
